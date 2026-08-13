@@ -77,11 +77,17 @@ Everything factual about Harlan lives in **`_ai/source/`**. Start with
 
 In short:
 
-- **[`_ai/source/bio.md`](../source/bio.md)** — bio paragraphs plus Harlan's own unpolished intro
-  notes, verbatim. Read it twice. The intro-notes section is his real voice and the strongest
+- **[`_ai/source/bio.md`](../source/bio.md)** — bio prose plus Harlan's own unpolished intro
+  notes, verbatim. Read it twice. The three voice samples are his real voice and the strongest
   writing in the folder. The notes at the bottom flag what to use, what to handle carefully, and
   what's unresolved.
-- **[`_ai/source/resume.md`](../source/resume.md)** and the original PDF beside it. Raw ore.
+- **[`_ai/source/testimonials.md`](../source/testimonials.md)** — all thirteen testimonials,
+  verbatim and attributed, with guidance on which to use and how to place them.
+- **[`_ai/source/resume-earlier.md`](../source/resume-earlier.md)** — everything the current
+  résumé dropped, and the richest file for the luminous side: his interests, his
+  personal-development history, his lineage of teachers, and a six-year consultancy he ran in his
+  twenties.
+- **[`_ai/source/resume.md`](../source/resume.md)** and the PDFs beside it. Raw ore.
   **This is not a résumé site** — do not produce a work-history timeline of job titles, dates,
   and bullet points. Mine it for evidence of range and depth, then express that as story,
   capability, and proof.
@@ -92,9 +98,8 @@ In short:
 
 - **Do not invent.** No fabricated client names, no made-up testimonials, no invented metrics
   ("increased revenue 340%"), no credentials that weren't given to you. This is a real person's
-  reputation. Exactly two testimonials exist, both real and attributed — Jim McCarthy (in
-  `resume.md`) and Greg Woodward, CTO of Nasdaq Private Market (in `bio.md`). Use both; invent no
-  third.
+  reputation. Thirteen real, attributed testimonials exist in `testimonials.md` — use three or
+  four of them, quote them exactly, and invent no fourteenth.
 - **Do not lift verbatim.** The bios are third-person boilerplate written for other purposes.
   Rewrite everything into first-person site voice. The exceptions: the mission statement, the
   McCarthy quote, and any phrase of Harlan's own that is genuinely better than what you'd write
@@ -122,7 +127,12 @@ Produce, in this order:
 1. **`_ai/DESIGN.md`** — the design language document (see §5). Write this *before* you write a
    line of HTML. It should be good enough that another designer could build a second page in the
    same system without asking questions. Lives in `_ai/` so it isn't published.
-2. **`index.html`** — the complete site. One file. See §7 for technical constraints.
+2. **`opus/index.html`** — the complete site. One file. See §7 for technical constraints.
+
+   > **Build to `opus/`, not the site root.** The link-tree `index.html` at the root stays live
+   > and untouched until Harlan decides to promote the new page. The new site is previewed at
+   > `ha.rlan.ai/opus/`. Reference shared assets with root-absolute paths (`/images/...`) so the
+   > page keeps working if it's later moved to the root.
 3. **`_ai/HANDOFF.md`** — what you built, every `{{NEEDS:}}` placeholder as a checklist, the
    decisions you made and why, and what you'd do next with more time.
 
@@ -297,9 +307,11 @@ link will be shared in DMs and Slack, and the preview card is part of the first 
 - **Static site on GitHub Pages**, custom domain `ha.rlan.ai` (see `CNAME` — do not touch it).
   Publishes from `main`. Every change lands directly on `main`; that is the user's chosen
   workflow.
-- **No build step. No framework. No npm.** A single self-contained `index.html` with a `<style>`
-  block and a small `<script>` block. Someone must be able to open it locally with no tooling and
-  see the real site.
+- **No build step. No framework. No npm.** A single self-contained `opus/index.html` with a
+  `<style>` block and a small `<script>` block. Someone must be able to open it locally with no
+  tooling and see the real site.
+- **The root `index.html` stays as it is.** Do not modify or delete the existing link tree; the
+  new page ships to `opus/` and Harlan promotes it when he's ready.
 - **Do not add `.nojekyll`** (it would publish `_ai/`), and do not put site assets in any
   directory beginning with `_` or `.`.
 - **Drop the Tailwind 2 CDN link.** Hand-written modern CSS — custom properties, `clamp()` for

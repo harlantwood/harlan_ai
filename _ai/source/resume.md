@@ -133,3 +133,142 @@ Founder / AI Engineer / Full Stack Developer
 **Languages & frameworks:** TypeScript · Ruby/Rails · SQL · Svelte · React · Python · Rust · Elixir
 
 **Craft & leadership:** Pedantic CI/CD · Software Quality · Tech Architecture · Dev Productivity · Test Automation · System Design · Tech Leadership · Dev Mentorship
+
+---
+
+# What's gold in here
+
+*The résumé is dense with proof that serves the AI-consulting frame. This section pulls it out so
+you don't have to re-derive it. Read the frame in §1 of the brief first — the job is to convert
+these into evidence for "master software developer" and "master of AI transformation," never into
+a work-history timeline.*
+
+## The single best proof point: eval-driven development at Union
+
+> *"Led the design and implementation of a comprehensive AI evaluation framework, introducing
+> eval-driven development to the team... establishing evals as a core development practice."*
+
+This is the most commercially valuable line on the résumé, and it's easy to skim past.
+
+Evals are the thing that separates teams shipping *reliable* AI from teams shipping impressive
+demos that fall over in production. Most organizations don't know they need them until they're
+six months into a project that won't stabilize. Harlan didn't just build the framework — he
+**changed how a team worked**, which is precisely the transformation service being sold.
+
+Everything around it corroborates: a custom simulator integrated with Langfuse, matrix
+simulations across multiple models and runs, LLM unit-test "testbeds," integration test
+simulators. This is unglamorous, expert, production-grade discipline. Give it real weight.
+
+## The rest of the current AI work (Union, 2025–2026 — his most recent role)
+
+- **Real-time AI voice agents** — VAPI, transcription models, LLMs, custom webhook handlers, tool
+  calling, *"without noticeable latency."* Latency is the hard problem in voice AI; anyone who's
+  built it knows that clause is the whole achievement. Don't let it get flattened into "built
+  voice AI."
+- **PathRAG** — architected a knowledge-graph system generating nodes and edges from natural
+  language queries, for a retrieval system that outperforms GraphRAG and traditional RAG. Note
+  the through-line: this is his decades-old semantic-graph obsession arriving exactly where the
+  AI industry now needs it. That convergence is a story worth telling.
+- Internal developer tooling for readability, usability, and information clarity.
+
+## The transformation pattern, already proven twice
+
+**SharesPost / Forge Global (2018–2024, six years) is the closest analogue to what he's selling,
+just one technology earlier.** He walked into an established financial-services engineering org
+and changed how it worked:
+
+- GitHub Codespaces from scratch — developer environment setup from **days to minutes**
+- Full CI/CD migration, CircleCI → GitHub Actions — cut build times and operational cost
+- Kubernetes + Tilt for reproducible multi-cloud infrastructure
+
+That's a concrete, quantified developer-productivity transformation inside a regulated company.
+Swap "developer productivity" for "AI capability" and it's the same job. **Six years also proves
+he isn't a drive-by consultant** — he stays and sees things through.
+
+Same pattern at Zozi (2010–2012): *"Directed a team culture that balanced software craftsmanship
+with business-driven deadlines."* That sentence names the exact tension every prospective client
+is worried about.
+
+## Careful with the Greg Woodward attribution
+
+This résumé attributes the Woodward testimonial to **"CTO, Nasdaq Private Market,"** and
+separately mentions Harlan collaborating with Nasdaq Private Markets at Citizen Code. It is
+tempting to connect those. **Don't** — the older résumés show the working relationship was at
+**Zozi**, where the two pair-programmed together. Nasdaq is simply Woodward's more recent title.
+
+See [`testimonials.md`](testimonials.md) for the full quote and the correct framing.
+
+## Enterprise credibility
+
+- **American Express skunkworks blockchain project** — led the tech team at its inception
+  (Citizen Code)
+- **Nasdaq Private Markets** trading system
+- **LinkedIn** — developed significant new functionality for the core website (Internaut Design)
+- **Upside** — built the codebase from scratch; that company *"has received millions of dollars
+  in funding, and is currently profitable."* A rare, concrete, durable outcome claim. Use it.
+
+A mission-driven client still needs to know he can survive a large organization. This is that
+evidence.
+
+## Twenty years of craft, with receipts
+
+The "master software developer" claim isn't a seniority assertion — the résumé substantiates it:
+
+- Full-time **Extreme Programming**, TDD, and pair programming at Citizen Code
+- Initiated **department-wide unit testing, CI, and Selenium automation** at Wireless Generation
+  in the 2006–2010 window — i.e. he was industrializing test automation before it was standard
+  practice
+- RSpec, Jasmine, TDD throughout the Rails years
+- Self-described **"Pedantic CI/CD"** in his own skills list — that word choice is a personality
+  and a standard, not a bullet point
+
+This is a twenty-year unbroken thread of engineering-quality discipline. It's what makes him
+safe to hire for something as failure-prone as an AI initiative.
+
+## Range
+
+Ruby/Rails, TypeScript, Python, Rust, Elixir, SQL, Svelte, React, C++, C#. Conferences spanning
+RailsConf, ElixirConf, Code BEAM, decentralized-web gatherings, and — in 2024 — the AI
+Engineering World's Fair and World AI Summit. Fifteen conferences over eight years shows
+continuous, deliberate currency, not coasting.
+
+## The graphics through-line (a nice detail, easy to miss)
+
+His 2006 degree carried a **computer graphics submajor: a 3D game engine in C++/OpenGL and a
+raytracer in C#.** Twenty years later he's building 3D data visualization and node-sculpture
+interfaces for CoreNexus. The interest wasn't picked up because it became fashionable — it's been
+there since university. Small, human, and it makes the visionary work read as authentic rather
+than opportunistic.
+
+Also: **First Class Honors**, University of Technology Sydney.
+
+---
+
+# Cautions
+
+**Do not carry over the job-seeking framing.** The summary line *"US citizen available for
+remote-first contract/part-time/full time | Pacific or Eastern US hours"* is résumé language for
+finding employment. On a consulting site at $5,000/day it actively undercuts the positioning —
+availability for full-time work signals a candidate, not a practice. Cut it entirely. (Timezone
+overlap may be worth mentioning in the engagement section; employment availability is not.)
+
+**The conferences are attended, not spoken at.** The résumé lists a "Conferences" section that is
+a record of attendance. His actual *speaking* credits are in `bio.md` — Internet Archive's
+inaugural Decentralized Web Summit, UPLIFT Festival, Federated Social Web Summit. Never blur
+these two lists together; presenting attendance as speaking would be a fabricated credential.
+
+**Don't publish the phone number** unless Harlan asks. The résumé lists it because résumés do.
+A consulting page routes through the scheduling link and email.
+
+**"OpenClaw"** appears twice — top of his skills list, and as current Nodesphere Studio work
+("Building OpenClaw deployment solutions") — but is never explained in any source document. It's
+clearly current and clearly important to him. Don't guess what it is or invent a description.
+`{{NEEDS: what is OpenClaw, and should it be featured?}}`
+
+**Union's dates (2025–2026) mean that role recently concluded**, which is presumably why the
+consulting practice is launching now. Useful context for you; not something the page should say.
+
+**Skill-bar self-ratings are not claims to reproduce.** The résumé renders skills as filled bars
+(Python, Rust, and Elixir noticeably shorter than TypeScript and Ruby/Rails). Don't build a
+skills-meter widget on the site — proficiency bars are a résumé convention and read as junior on
+a consulting page. Let the work testify instead.

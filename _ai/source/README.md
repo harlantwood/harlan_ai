@@ -9,29 +9,43 @@ build. This folder tells you what's true.
 
 | File | What it is | How to use it |
 | --- | --- | --- |
-| [`bio.md`](bio.md) | All bio material, verbatim: formal bios, Harlan's own unpolished intro notes, a community self-introduction, and a dated blockchain-era positioning one-pager | **Read this first and read it twice.** The two voice samples — "Harlan's own intro notes" and the community self-introduction — are his real voice and the best writing in the folder. Both testimonials live here or in `resume.md`. The notes at the bottom flag what to use, what to handle carefully, and what's unresolved. |
-| [`resume.md`](resume.md) | Full transcription of the résumé PDF | Raw ore. Mine for evidence of range and depth. **Do not build a work-history timeline.** |
-| `Harlan_T_Wood_Resume.pdf` | The original résumé | Authority if it ever disagrees with the transcription. Also shows the portrait and the visual identity he's been using. |
+| [`bio.md`](bio.md) | All bio prose, verbatim: formal bios, Harlan's own unpolished intro notes, two community self-introductions, and a dated blockchain-era positioning one-pager | **Read first, twice.** The three voice samples are his real voice and the best writing in the folder. Notes at the bottom flag what to use, what to handle carefully, and what's unresolved. |
+| [`testimonials.md`](testimonials.md) | **All thirteen testimonials**, verbatim and attributed, with usage guidance | The strongest asset here. Use three or four, not thirteen. Never paraphrase a quote. |
+| [`resume-earlier.md`](resume-earlier.md) | Everything on the two older résumés that the current one dropped: the practice name, interests, personal-development history, trainings, full 1999–2024 work record, project lists | **The richest file for the *luminous* side of the site.** Contains the Tufte/McCarthy/Poppendieck lineage, the six-year early consultancy, and his own phrase "committed to making luminous software experiences." |
+| [`resume.md`](resume.md) | Transcription of the current résumé, plus a "what's gold in here" analysis and a cautions list | Raw ore. Mine for evidence of range and depth. **Do not build a work-history timeline.** |
+| `Harlan_T_Wood_Resume.pdf` | The current résumé (2026) | Authority if a transcription ever disagrees. |
+| `Harlan_T_Wood_Resume_older_2.pdf` | Older résumé, "AI-Curious Engineering Leader" | Source for `resume-earlier.md` and most testimonials. |
+| `Harlan_T_Wood_Resume_older_1.pdf` | Oldest of the three | Same; has one extra testimonial and a different interests list. |
 | [`../../index.html`](../../index.html) | The current live site | Facts and links only — the design is being replaced entirely. Most recently published source for project URLs. |
-| `../../images/` | `harlan.jpg`, `harlan2.jpg` | ~600KB each. Pick the stronger one, optimize it, keep the originals. |
+| `../../images/` | `harlan.jpg`, `harlan2.jpg` | ~600KB each. Pick the stronger, optimize it, keep the originals. |
 
 ## Rules
 
 1. **These files are the only source of truth about Harlan.** Do not invent clients, testimonials,
    metrics, or credentials.
 2. **Be inspired by this material; do not transcribe it.** The bios are third-person boilerplate
-   written for other purposes, and one of them sells a blockchain practice that no longer exists.
-   Read §1 of the brief for the frame before you use any of it.
-3. Exactly two testimonials exist, both real and attributed: Jim McCarthy (`resume.md`) and Greg
-   Woodward, CTO of Nasdaq Private Market (`bio.md`). Use both. Invent no third.
+   written for other purposes, and one sells a blockchain practice that no longer exists. Read §1
+   of the brief for the frame before using any of it.
+3. **Thirteen testimonials exist**, all real and attributed, all in `testimonials.md`. Use a few.
+   Quote them exactly — trimming with an ellipsis is fine, rewording is not. Invent no fourteenth.
 4. Where you need a fact you don't have, write the section anyway and leave `{{NEEDS: ...}}`.
    Collect every one into the `HANDOFF.md` checklist.
-5. Unresolved items are listed at the bottom of `bio.md` — project URLs, his current location,
-   and the practice name all disagree or are missing across sources. Verify every link resolves
-   before shipping.
+5. **Verify every outbound URL resolves before shipping.** Sources disagree on several project
+   domains.
 
-## Not yet supplied
+## Open questions, gathered
 
-- `{{CAL_LINK}}` — scheduling link for free consultations. Use the literal placeholder.
-- `{{EMAIL}}` — contact address. The résumé lists `h@rlan.me`; confirm before hardcoding it, since
-  a résumé address and a public-site address aren't always the same.
+These are flagged in context throughout the files; collected here so nothing is lost.
+
+- **Project URLs** — CoreNexus `.io` vs `.is`; TrustGraph `.net` vs `.is`. (`bio.md`)
+- **Practice name** — "Heaven on Earth Consulting" (older résumés), "Nodesphere Studio" (current
+  résumé), or just his own name? (`resume-earlier.md`)
+- **Location** — Hawaii (community intro, and the 808 phone number) vs Azores (current résumé).
+- **CoMakery vs Upside** — the same company under two names across résumés. Which to use?
+- **What is OpenClaw?** — top of his current skills list and his current Nodesphere work, never
+  explained. (`resume.md`)
+- **Heaven Sequence, YogaStream, Fork This** — projects named nowhere else. Also: what was the
+  involvement with Ward Cunningham's Smallest Federated Wiki? (`resume-earlier.md`)
+- **Testimonial sign-off** — confirm Harlan is comfortable publishing each name publicly.
+- **`{{CAL_LINK}}`** — scheduling link for free consultations. Not yet supplied.
+- **`{{EMAIL}}`** — the résumés list `h@rlan.me`; confirm that's the public-facing address.
