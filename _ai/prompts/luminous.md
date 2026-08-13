@@ -33,47 +33,96 @@ without shoving.
 
 ---
 
-## 1. Source material
+## 1. The frame — read before you touch the source material
 
-Everything factual about Harlan is provided alongside this brief (bio paragraphs, a résumé,
-project descriptions, and whatever else was pasted in with it).
+The source folder is full of decentralized-identity work, trust graphs, 3D social operating
+systems, regenerative economies, and cosmology. It is fascinating, it is real, and **it is not
+what this page is selling.**
 
-**Treat that material as the only source of truth about him.**
+**What this page sells is two things:**
 
-- The résumé is raw ore, not the deliverable. **This is not a résumé site.** Do not produce a
-  work-history timeline with job titles, dates, and bullet points. Mine the résumé for *evidence
-  of range and depth*, then express that evidence as story, capability, and proof.
+1. **A master software developer.** Programming since 1984. Twenty years of shipping production
+   systems in SF and NYC — architect, CTO, tech lead. He has seen every hype cycle and knows
+   what survives contact with production.
+2. **A master of AI transformation.** Someone who takes an organization or a leader from
+   "we know AI matters and we're anxious about it" to "we're using it, well, in a way that's
+   ours." Real-time voice agents, evaluation frameworks, retrieval architectures, agentic
+   systems, AI-fluent teams — built and shipped, not theorized.
+
+Everything else in the source material serves those two claims. It is **evidence and alignment,
+not product.**
+
+- The decentralized-systems work is evidence that he architects at the level of protocols and
+  foundations, not just features — and that he's been early, correctly, more than once.
+- The spiritual and transformational background is evidence that he belongs in the room with a
+  mission-driven leader — that he'll understand *why* they're building, not just *what*.
+- The visionary projects are evidence of range and imagination, and they're the handshake for
+  kindred spirits.
+
+So: **be inspired by the material; do not transcribe it.** A visitor should finish the page
+knowing they can hire an extraordinary engineer who gets them — not feeling they've been read a
+manifesto about self-sovereign identity. When you're deciding how much of a visionary idea to
+include, ask: *does this make a prospective client trust him more?* If yes, keep it, compressed.
+If it's just interesting, cut it.
+
+The failure mode to avoid on the content side: a page that reads as a brilliant person's
+intellectual tour rather than an invitation to work with him.
+
+---
+
+## 2. Source material
+
+Everything factual about Harlan lives in **`_ai/source/`**. Start with
+[`_ai/source/README.md`](../source/README.md), which indexes the folder and lists the rules.
+
+In short:
+
+- **[`_ai/source/bio.md`](../source/bio.md)** — bio paragraphs plus Harlan's own unpolished intro
+  notes, verbatim. Read it twice. The intro-notes section is his real voice and the strongest
+  writing in the folder. The notes at the bottom flag what to use, what to handle carefully, and
+  what's unresolved.
+- **[`_ai/source/resume.md`](../source/resume.md)** and the original PDF beside it. Raw ore.
+  **This is not a résumé site** — do not produce a work-history timeline of job titles, dates,
+  and bullet points. Mine it for evidence of range and depth, then express that as story,
+  capability, and proof.
+- **`index.html`** in the repo root — the current live site. Facts and links only; the design is
+  being replaced entirely.
+
+**Treat that folder as the only source of truth about him.**
+
 - **Do not invent.** No fabricated client names, no made-up testimonials, no invented metrics
   ("increased revenue 340%"), no credentials that weren't given to you. This is a real person's
-  reputation.
+  reputation. Exactly two testimonials exist, both real and attributed — Jim McCarthy (in
+  `resume.md`) and Greg Woodward, CTO of Nasdaq Private Market (in `bio.md`). Use both; invent no
+  third.
+- **Do not lift verbatim.** The bios are third-person boilerplate written for other purposes.
+  Rewrite everything into first-person site voice. The exceptions: the mission statement, the
+  McCarthy quote, and any phrase of Harlan's own that is genuinely better than what you'd write
+  (`bio.md` flags several).
 - If a section would be much stronger with a fact you don't have, write the section and leave a
-  clearly marked placeholder: `{{NEEDS: a specific outcome from the CoreNexus work}}`. Collect
-  every one of these into a checklist at the end of your handoff notes.
-- Known properties (verify against the existing `index.html` and the pasted material before
-  using): Mirror / aistrologer.app, CoreNexus / corenexus.is, TrustGraph / trustgraph.net,
-  HoloFractal / holofractal.is, Superluminal Systems / superluminal.is, LinkedIn
-  /in/harlanwood. Realtime AI (rltm.ai) is currently commented out on the live site — leave it
-  out unless the pasted material brings it back.
+  clearly marked placeholder: `{{NEEDS: a specific outcome from the Union voice-agent work}}`.
+  Collect every one into a checklist in `HANDOFF.md`.
+- **Verify every outbound URL resolves.** The sources disagree with each other on several project
+  domains — see the unresolved list at the bottom of `bio.md`.
 
-His existing stated mission, from the current site, is load-bearing and should survive into the
-new page in some form:
+His stated mission is load-bearing and should survive into the new page in some form:
 
-> *To catalyze the creation and adoption of luminous tools to enable free and open transformation
-> of organizations, individuals, and the world. I dream of an age of enlightened creativity, and
-> the end of scarcity on planet Earth.*
+> *It is my commitment to catalyze the creation and adoption of luminous tools to enable free and
+> open transformation of organizations, individuals, and the world. I dream of an age of
+> enlightened creativity, and the end of scarcity on planet Earth.*
 
 That sentence is the seed of the whole design language. The word is **luminous**.
 
 ---
 
-## 2. Deliverables
+## 3. Deliverables
 
 Produce, in this order:
 
-1. **`_ai/DESIGN.md`** — the design language document (see §4). Write this *before* you write a
+1. **`_ai/DESIGN.md`** — the design language document (see §5). Write this *before* you write a
    line of HTML. It should be good enough that another designer could build a second page in the
    same system without asking questions. Lives in `_ai/` so it isn't published.
-2. **`index.html`** — the complete site. One file. See §6 for technical constraints.
+2. **`index.html`** — the complete site. One file. See §7 for technical constraints.
 3. **`_ai/HANDOFF.md`** — what you built, every `{{NEEDS:}}` placeholder as a checklist, the
    decisions you made and why, and what you'd do next with more time.
 
@@ -82,7 +131,7 @@ optimized copy of the portrait, a favicon, an OG share image.
 
 ---
 
-## 3. Page architecture
+## 4. Page architecture
 
 One page. Long scroll. No routing, no tabs, no accordions hiding the good parts. The scroll
 itself is the narrative device — the visitor should feel like they're descending into
@@ -131,7 +180,7 @@ few lines of what actually happens and what the client walks away with.
 **7 — Terms.** Plainspoken, unembarrassed, no pricing-table theater.
 
 - **$5,000 per day.** A day is the minimum engagement.
-- Free initial consultations are available — see §7 for how to handle the gating.
+- Free initial consultations are available — see §8 for how to handle the gating.
 - Wrap this block in HTML comments `<!-- PRICING START -->` / `<!-- PRICING END -->` so it can
   be removed in one edit. **Recommendation: keep it visible.** A public number is a filter; it
   saves everyone's time and reads as confidence, which is exactly the tone we want.
@@ -152,7 +201,7 @@ it reading as filler.
 
 ---
 
-## 4. Design language — this is the part to be bold about
+## 5. Design language — this is the part to be bold about
 
 The brief in one word: **luminous**. Not dark. Not edgy. Not cyberpunk. Not a terminal. The
 entire current visual vocabulary of AI — black backgrounds, neon accents, glowing circuit
@@ -181,7 +230,7 @@ Explore, and commit to, decisions on:
   big statements, a clean, quiet grotesque for structure and UI. Real typographic craft — a
   modular type scale, measure held near 60–75 characters, generous leading, tightened tracking on
   display sizes, hanging punctuation if you're feeling it. Self-host or use system fonts (see the
-  performance constraint in §6); if you use webfonts, subset and preload them and keep the total
+  performance constraint in §7); if you use webfonts, subset and preload them and keep the total
   small. Type is doing most of the emotional work on this page — treat it that way.
 - **One motif.** Choose a single geometric idea and use it with discipline: an aperture, a
   horizon, a rising arc, a fractal seed, a lens. It can appear as a section divider, a bullet, a
@@ -216,7 +265,7 @@ sections, and the one gradient that's slightly too strong. The difference betwee
 
 ---
 
-## 5. Voice and copy
+## 6. Voice and copy
 
 You are writing **as Harlan, in first person**, from the pasted bio. Match his register: visionary
 but grounded, warm, unhurried, technically credible, occasionally funny, never mystical-vague and
@@ -243,7 +292,7 @@ link will be shared in DMs and Slack, and the preview card is part of the first 
 
 ---
 
-## 6. Technical constraints
+## 7. Technical constraints
 
 - **Static site on GitHub Pages**, custom domain `ha.rlan.ai` (see `CNAME` — do not touch it).
   Publishes from `main`. Every change lands directly on `main`; that is the user's chosen
@@ -275,7 +324,7 @@ link will be shared in DMs and Slack, and the preview card is part of the first 
 
 ---
 
-## 7. The consultation flow
+## 8. The consultation flow
 
 The CTA appears at minimum in the hero, mid-page, and in the final section. Same destination
 every time; vary the wording so it doesn't read as a repeated button.
@@ -294,7 +343,7 @@ every time; vary the wording so it doesn't read as a repeated button.
 
 ---
 
-## 8. Working method
+## 9. Working method
 
 1. Read every piece of pasted source material end to end before writing anything.
 2. Read the current `index.html` — for facts and links, not for design.
@@ -315,6 +364,9 @@ the handoff. Harlan can always ask for the safe one; he can't ask for the idea y
 
 ---
 
-## Appendix — paste source material below this line
+## Appendix — where the material lives
 
-<!-- BIO, RÉSUMÉ, PROJECT NOTES, AND ANY OTHER SOURCE MATERIAL GOES HERE -->
+All source material is in **[`_ai/source/`](../source/)**. Start with its
+[`README.md`](../source/README.md).
+
+Nothing needs to be pasted into this file.
