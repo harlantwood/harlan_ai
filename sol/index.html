@@ -1,0 +1,1419 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Harlan T Wood — AI transformation &amp; software architecture</title>
+  <meta name="description" content="Harlan T Wood helps mission-driven leaders turn AI uncertainty into clear decisions, working systems, and capable teams.">
+  <meta name="theme-color" content="#F7F1E6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111B26" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ha.rlan.ai/sol/">
+  <meta property="og:title" content="Harlan T Wood — Build what matters. Make AI yours.">
+  <meta property="og:description" content="AI transformation, software architecture, and hands-on implementation for work with a reason for existing.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Harlan T Wood — Build what matters. Make AI yours.">
+  <meta name="twitter:description" content="AI transformation, software architecture, and hands-on implementation for work with a reason for existing.">
+  <script>
+    document.documentElement.classList.add('js');
+    try {
+      const savedTheme = localStorage.getItem('harlan-theme');
+      if (savedTheme === 'light' || savedTheme === 'dark') {
+        document.documentElement.dataset.theme = savedTheme;
+      }
+    } catch (error) {}
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --ground: #F7F1E6;
+      --ground-soft: #EFE4D1;
+      --paper: #FFFDF8;
+      --ink: #183B3A;
+      --ink-soft: #4C5954;
+      --accent: #8A4A14;
+      --rose: #8D4351;
+      --sun: #F4B95F;
+      --line: rgba(24, 59, 58, .22);
+      --header: rgba(247, 241, 230, .88);
+      --button-ink: #FFFDF8;
+      --shadow: rgba(79, 49, 21, .16);
+      --serif: "Iowan Old Style", "Baskerville", "Times New Roman", serif;
+      --sans: "Avenir Next", "Avenir", "Segoe UI", "Helvetica Neue", sans-serif;
+      --ease: cubic-bezier(.2, .75, .2, 1);
+      --gutter: clamp(1.25rem, 4vw, 4.5rem);
+      --section-space: clamp(6.5rem, 14vw, 12rem);
+      --max: 90rem;
+    }
+
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --ground: #111B26;
+      --ground-soft: #172737;
+      --paper: #1C2E3B;
+      --ink: #F7EDDC;
+      --ink-soft: #C9C4B7;
+      --accent: #F3B65D;
+      --rose: #F09AA0;
+      --sun: #E79A3B;
+      --line: rgba(247, 237, 220, .24);
+      --header: rgba(17, 27, 38, .9);
+      --button-ink: #111B26;
+      --shadow: rgba(0, 0, 0, .32);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--ground);
+    }
+
+    body {
+      margin: 0;
+      min-width: 20rem;
+      background:
+        radial-gradient(circle at 100% 5%, color-mix(in srgb, var(--sun) 15%, transparent) 0, transparent 28rem),
+        linear-gradient(180deg, var(--ground) 0%, var(--ground) 72%, var(--ground-soft) 100%);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: clamp(1.05rem, 1.3vw, 1.18rem);
+      line-height: 1.67;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      color: var(--ink);
+      background: color-mix(in srgb, var(--sun) 48%, var(--ground));
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
+      text-underline-offset: .2em;
+      text-decoration-thickness: .08em;
+    }
+
+    a:hover {
+      text-decoration-color: currentColor;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--rose);
+      outline-offset: 4px;
+      border-radius: .25rem;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    h1,
+    h2,
+    h3,
+    p,
+    blockquote,
+    figure {
+      margin-top: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-weight: 400;
+      text-wrap: balance;
+    }
+
+    section[id] {
+      scroll-margin-top: 7rem;
+    }
+
+    .skip-link {
+      position: fixed;
+      z-index: 100;
+      top: 1rem;
+      left: 1rem;
+      padding: .7rem 1rem;
+      background: var(--ink);
+      color: var(--button-ink);
+      font-family: var(--sans);
+      font-size: .85rem;
+      transform: translateY(-200%);
+      transition: transform .2s ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .site-header {
+      position: fixed;
+      z-index: 50;
+      inset: 0 0 auto;
+      border-bottom: 1px solid transparent;
+      transition: background-color .45s var(--ease), border-color .45s var(--ease), box-shadow .45s var(--ease);
+    }
+
+    .site-header.is-scrolled {
+      background: var(--header);
+      border-color: var(--line);
+      box-shadow: 0 .4rem 2rem color-mix(in srgb, var(--shadow) 35%, transparent);
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+    }
+
+    .header-inner {
+      width: min(100%, var(--max));
+      min-height: 4.7rem;
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .wordmark {
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: .76rem;
+      font-weight: 650;
+      letter-spacing: .12em;
+      line-height: 1.2;
+      text-decoration: none;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .header-nav {
+      display: none;
+      align-items: center;
+      gap: clamp(1.2rem, 2.6vw, 2.8rem);
+      font-family: var(--sans);
+      font-size: .76rem;
+      letter-spacing: .08em;
+    }
+
+    .header-nav a {
+      color: var(--ink-soft);
+      text-decoration: none;
+    }
+
+    .header-nav a:hover {
+      color: var(--ink);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+    }
+
+    .theme-toggle {
+      width: 2.75rem;
+      min-height: 2.75rem;
+      padding: 0;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .theme-toggle::before {
+      content: "";
+      position: absolute;
+      width: .78rem;
+      height: .78rem;
+      border: 1px solid currentColor;
+      border-radius: 50%;
+      top: .55rem;
+      left: .94rem;
+      background: color-mix(in srgb, var(--sun) 62%, transparent);
+    }
+
+    .theme-toggle::after {
+      content: "";
+      position: absolute;
+      left: .55rem;
+      right: .55rem;
+      bottom: .72rem;
+      height: 1px;
+      background: currentColor;
+    }
+
+    .header-cta {
+      display: inline-flex;
+      min-height: 2.75rem;
+      align-items: center;
+      justify-content: center;
+      padding: .65rem 1rem;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--button-ink);
+      font-family: var(--sans);
+      font-size: .72rem;
+      font-weight: 650;
+      letter-spacing: .04em;
+      line-height: 1;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .canvas {
+      width: min(100%, var(--max));
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+
+    .hero {
+      min-height: min(58rem, 100svh);
+      padding-top: clamp(8.4rem, 18vh, 12rem);
+      padding-bottom: clamp(5rem, 10vh, 8rem);
+      position: relative;
+      isolation: isolate;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      z-index: -2;
+      width: clamp(26rem, 70vw, 64rem);
+      aspect-ratio: 1;
+      top: clamp(1rem, 5vw, 5rem);
+      right: clamp(-25rem, -22vw, -7rem);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 50%,
+          color-mix(in srgb, var(--paper) 90%, var(--sun)) 0 32%,
+          color-mix(in srgb, var(--sun) 48%, transparent) 58%,
+          transparent 71%);
+      filter: blur(.2px);
+      transform-origin: 50% 55%;
+      animation: arrive 18s var(--ease) 1 both;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: 52%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0, var(--line) 12%, var(--line) 90%, transparent 100%);
+      pointer-events: none;
+    }
+
+    @keyframes arrive {
+      from { transform: translate3d(4%, 3%, 0) scale(.96); opacity: .58; }
+      to { transform: translate3d(0, 0, 0) scale(1); opacity: 1; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 69rem;
+    }
+
+    .eyebrow,
+    .section-index,
+    .fact-label,
+    .project-role,
+    .quote-attribution,
+    .kicker {
+      color: var(--ink-soft);
+      font-family: var(--sans);
+      font-size: .72rem;
+      font-weight: 650;
+      letter-spacing: .15em;
+      line-height: 1.5;
+      text-transform: uppercase;
+    }
+
+    .eyebrow {
+      max-width: 42rem;
+      margin-bottom: clamp(1.7rem, 4vw, 3rem);
+      color: var(--rose);
+    }
+
+    .hero h1 {
+      max-width: 9.2ch;
+      margin-bottom: clamp(2rem, 5vw, 3.7rem);
+      font-size: clamp(3.25rem, 11vw, 8.75rem);
+      line-height: .84;
+      letter-spacing: -.055em;
+    }
+
+    .hero-lead {
+      max-width: 42rem;
+      margin-bottom: 2rem;
+      font-size: clamp(1.22rem, 2.1vw, 1.72rem);
+      line-height: 1.48;
+    }
+
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem 1.4rem;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 3.35rem;
+      align-items: center;
+      justify-content: center;
+      gap: .7rem;
+      padding: .9rem 1.35rem;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--button-ink);
+      font-family: var(--sans);
+      font-size: .83rem;
+      font-weight: 650;
+      letter-spacing: .04em;
+      line-height: 1.2;
+      text-decoration: none;
+      transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 .7rem 1.7rem var(--shadow);
+    }
+
+    .button-arrow {
+      transition: transform .35s var(--ease);
+    }
+
+    .button:hover .button-arrow {
+      transform: translateX(4px);
+    }
+
+    .text-link {
+      display: inline-flex;
+      min-height: 2.75rem;
+      align-items: center;
+      font-family: var(--sans);
+      font-size: .82rem;
+      font-weight: 650;
+    }
+
+    .hero-proof {
+      margin: clamp(4.5rem, 10vw, 8rem) 0 0;
+      padding: 1.25rem 0 0;
+      border-top: 1px solid var(--line);
+      display: grid;
+      gap: 1.3rem;
+    }
+
+    .hero-proof p {
+      margin: 0;
+    }
+
+    .proof-value {
+      display: block;
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: .94rem;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .proof-note {
+      display: block;
+      margin-top: .22rem;
+      color: var(--ink-soft);
+      font-family: var(--sans);
+      font-size: .76rem;
+      line-height: 1.4;
+    }
+
+    .section {
+      position: relative;
+      padding-block: var(--section-space);
+    }
+
+    .section-rule {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: clamp(3.5rem, 8vw, 6.5rem);
+    }
+
+    .section-index {
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .solar-line {
+      height: 1px;
+      background: var(--line);
+      position: relative;
+    }
+
+    .solar-line::after {
+      content: "";
+      position: absolute;
+      width: .72rem;
+      height: .72rem;
+      top: 50%;
+      left: clamp(12%, 28vw, 62%);
+      border-radius: 50%;
+      background: var(--sun);
+      box-shadow: 0 0 1.5rem color-mix(in srgb, var(--sun) 58%, transparent);
+      transform: translate(-50%, -50%);
+    }
+
+    .recognition {
+      padding-top: clamp(4rem, 10vw, 8rem);
+    }
+
+    .recognition-grid,
+    .chapter-grid,
+    .human-grid {
+      display: grid;
+      gap: 2.5rem;
+    }
+
+    .statement {
+      max-width: 14ch;
+      margin-bottom: 0;
+      font-size: clamp(2.35rem, 7vw, 5.9rem);
+      line-height: .94;
+      letter-spacing: -.04em;
+    }
+
+    .recognition-copy {
+      max-width: 38rem;
+      font-size: clamp(1.18rem, 1.8vw, 1.48rem);
+      line-height: 1.57;
+    }
+
+    .recognition-copy p:last-child,
+    .body-copy p:last-child {
+      margin-bottom: 0;
+    }
+
+    .chapter-heading {
+      max-width: 13ch;
+      margin-bottom: 1.8rem;
+      font-size: clamp(2.3rem, 5.4vw, 4.9rem);
+      line-height: .98;
+      letter-spacing: -.038em;
+    }
+
+    .chapter-lead {
+      max-width: 42rem;
+      color: var(--ink-soft);
+      font-size: clamp(1.18rem, 1.8vw, 1.48rem);
+      line-height: 1.55;
+    }
+
+    .facts {
+      margin-top: clamp(4rem, 8vw, 7rem);
+      border-top: 1px solid var(--line);
+    }
+
+    .fact {
+      padding-block: clamp(1.5rem, 3vw, 2.5rem);
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      gap: .7rem;
+    }
+
+    .fact-number {
+      color: var(--rose);
+      font-size: clamp(2.1rem, 5vw, 4.2rem);
+      line-height: 1;
+      letter-spacing: -.035em;
+    }
+
+    .fact-copy {
+      max-width: 46rem;
+      margin-bottom: 0;
+    }
+
+    .precision-note {
+      margin-top: clamp(3rem, 7vw, 5rem);
+      padding: 1.35rem 0 1.35rem 1.35rem;
+      border-left: 1px solid var(--accent);
+      max-width: 47rem;
+      color: var(--ink-soft);
+    }
+
+    .precision-note strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .projects {
+      background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--ground-soft) 48%, transparent) 26%, transparent);
+    }
+
+    .project-list {
+      margin: clamp(4rem, 8vw, 7rem) 0 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--line);
+    }
+
+    .project {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .project-link,
+    .project-static {
+      min-height: 10rem;
+      padding-block: clamp(1.8rem, 4vw, 3rem);
+      display: grid;
+      gap: 1rem;
+      color: var(--ink);
+      text-decoration: none;
+      transition: padding-inline .45s var(--ease), background-color .45s var(--ease);
+    }
+
+    .project-link:hover {
+      padding-inline: clamp(.65rem, 2vw, 1.5rem);
+      background: color-mix(in srgb, var(--paper) 52%, transparent);
+    }
+
+    .project-name {
+      margin: 0;
+      font-size: clamp(1.75rem, 3.8vw, 3.25rem);
+      line-height: 1.05;
+      letter-spacing: -.025em;
+    }
+
+    .project-description {
+      max-width: 49rem;
+      margin: 0;
+      color: var(--ink-soft);
+    }
+
+    .project-go {
+      align-self: center;
+      justify-self: start;
+      color: var(--accent);
+      font-family: var(--sans);
+      font-size: .78rem;
+      font-weight: 650;
+      letter-spacing: .08em;
+      white-space: nowrap;
+      transition: transform .35s var(--ease);
+    }
+
+    .project-link:hover .project-go {
+      transform: translateX(4px);
+    }
+
+    .project-cta {
+      margin-top: 3rem;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .witness {
+      padding-block: clamp(6rem, 13vw, 11rem);
+    }
+
+    .testimonial {
+      max-width: 67rem;
+      margin: 0;
+      padding-left: clamp(1.4rem, 4vw, 3.5rem);
+      border-left: 1px solid var(--accent);
+    }
+
+    .testimonial p {
+      margin-bottom: 2rem;
+      font-size: clamp(1.75rem, 4vw, 3.5rem);
+      line-height: 1.16;
+      letter-spacing: -.025em;
+    }
+
+    .quote-attribution {
+      color: var(--ink-soft);
+      font-style: normal;
+      letter-spacing: .08em;
+      text-transform: none;
+    }
+
+    .quote-attribution strong {
+      color: var(--ink);
+    }
+
+    .philosophy {
+      overflow: hidden;
+    }
+
+    .philosophy::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: min(85vw, 70rem);
+      aspect-ratio: 1;
+      left: 50%;
+      top: 46%;
+      transform: translate(-50%, -50%);
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 clamp(2rem, 7vw, 7rem) color-mix(in srgb, var(--sun) 3%, transparent),
+        0 0 clamp(5rem, 12vw, 12rem) color-mix(in srgb, var(--sun) 12%, transparent);
+      pointer-events: none;
+    }
+
+    .philosophy-inner {
+      max-width: 76rem;
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    .philosophy .section-rule {
+      text-align: left;
+    }
+
+    .philosophy-heading {
+      max-width: 19ch;
+      margin: 0 auto clamp(3rem, 7vw, 5.5rem);
+      font-size: clamp(2.55rem, 6.6vw, 6.35rem);
+      line-height: .94;
+      letter-spacing: -.045em;
+    }
+
+    .philosophy-copy {
+      max-width: 44rem;
+      margin-inline: auto;
+      text-align: left;
+      font-size: clamp(1.18rem, 1.8vw, 1.48rem);
+      line-height: 1.6;
+    }
+
+    .mission {
+      max-width: 50rem;
+      margin: clamp(4rem, 8vw, 7rem) auto 0;
+      color: var(--rose);
+      font-size: clamp(1.48rem, 2.9vw, 2.5rem);
+      line-height: 1.35;
+      font-style: italic;
+    }
+
+    .engagements {
+      margin-top: clamp(4rem, 8vw, 7rem);
+      display: grid;
+      gap: 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .engagement {
+      padding-block: clamp(2rem, 4vw, 3.5rem);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .engagement-number {
+      display: block;
+      margin-bottom: 1.2rem;
+      color: var(--accent);
+      font-family: var(--sans);
+      font-size: .75rem;
+      font-weight: 650;
+      letter-spacing: .15em;
+    }
+
+    .engagement h3 {
+      margin-bottom: 1rem;
+      font-size: clamp(1.8rem, 3.8vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -.025em;
+    }
+
+    .engagement p {
+      max-width: 34rem;
+      margin-bottom: 0;
+      color: var(--ink-soft);
+    }
+
+    .compact-quote {
+      max-width: 42rem;
+      margin: clamp(4rem, 8vw, 7rem) 0 0 auto;
+      padding-left: 1.4rem;
+      border-left: 1px solid var(--rose);
+    }
+
+    .compact-quote p {
+      margin-bottom: 1rem;
+      font-size: clamp(1.25rem, 2.2vw, 1.7rem);
+      line-height: 1.45;
+    }
+
+    .terms-shell {
+      position: relative;
+      padding: clamp(2rem, 6vw, 5rem);
+      background: var(--ink);
+      color: var(--button-ink);
+      overflow: hidden;
+    }
+
+    .terms-shell::after {
+      content: "";
+      position: absolute;
+      width: min(22rem, 70vw);
+      aspect-ratio: 1;
+      right: -12%;
+      bottom: -56%;
+      border: 1px solid color-mix(in srgb, var(--button-ink) 32%, transparent);
+      border-radius: 50%;
+      box-shadow: 0 0 5rem color-mix(in srgb, var(--sun) 18%, transparent);
+    }
+
+    .terms-shell .section-index,
+    .terms-shell .kicker {
+      color: color-mix(in srgb, var(--button-ink) 76%, transparent);
+    }
+
+    .rate {
+      margin: 1.5rem 0 2rem;
+      font-size: clamp(3rem, 9vw, 7.8rem);
+      line-height: .88;
+      letter-spacing: -.055em;
+    }
+
+    .rate span {
+      display: block;
+      margin-top: .8rem;
+      font-family: var(--sans);
+      font-size: clamp(.8rem, 1.5vw, 1.05rem);
+      font-weight: 600;
+      letter-spacing: .13em;
+      line-height: 1.3;
+      text-transform: uppercase;
+    }
+
+    .terms-copy {
+      position: relative;
+      z-index: 1;
+      max-width: 39rem;
+      margin-bottom: 2.2rem;
+      color: color-mix(in srgb, var(--button-ink) 82%, transparent);
+      font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+    }
+
+    .terms-shell .button {
+      border-color: var(--sun);
+      background: var(--sun);
+      color: #183B3A;
+    }
+
+    .terms-testimonial {
+      max-width: 44rem;
+      margin-top: clamp(3rem, 7vw, 5rem);
+      padding-top: 2rem;
+      border-top: 1px solid color-mix(in srgb, var(--button-ink) 28%, transparent);
+      color: color-mix(in srgb, var(--button-ink) 82%, transparent);
+    }
+
+    .terms-testimonial p {
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+
+    .terms-testimonial .quote-attribution,
+    .terms-testimonial .quote-attribution strong {
+      color: color-mix(in srgb, var(--button-ink) 84%, transparent);
+    }
+
+    .portrait-wrap {
+      position: relative;
+      width: min(100%, 25rem);
+      aspect-ratio: 1;
+      margin-inline: auto;
+    }
+
+    .portrait-wrap::before {
+      content: "";
+      position: absolute;
+      inset: -1rem;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+    }
+
+    .portrait-wrap::after {
+      content: "";
+      position: absolute;
+      inset: 50% -2rem auto;
+      height: 1px;
+      background: var(--line);
+      z-index: -1;
+    }
+
+    .portrait {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 50%;
+      filter: saturate(.78) contrast(1.02);
+      box-shadow: 0 1.5rem 4rem var(--shadow);
+    }
+
+    .bio-heading {
+      max-width: 11ch;
+      margin-bottom: 2rem;
+      font-size: clamp(2.3rem, 5.4vw, 4.9rem);
+      line-height: .98;
+      letter-spacing: -.038em;
+    }
+
+    .body-copy {
+      max-width: 42rem;
+    }
+
+    .strange-line {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--line);
+      color: var(--rose);
+      font-size: clamp(1.3rem, 2.3vw, 1.85rem);
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    .final-invitation {
+      padding-block: clamp(7rem, 17vw, 15rem);
+      text-align: center;
+    }
+
+    .final-invitation::before {
+      content: "";
+      display: block;
+      width: clamp(4rem, 12vw, 8rem);
+      aspect-ratio: 2 / 1;
+      margin: 0 auto clamp(3rem, 6vw, 5rem);
+      border-radius: 999px 999px 0 0;
+      border: 1px solid var(--line);
+      border-bottom: 0;
+      background: linear-gradient(to top, color-mix(in srgb, var(--sun) 18%, transparent), transparent);
+      box-shadow: 0 -1rem 4rem color-mix(in srgb, var(--sun) 16%, transparent);
+    }
+
+    .final-heading {
+      max-width: 16ch;
+      margin: 0 auto 2rem;
+      font-size: clamp(2.7rem, 7.5vw, 6.7rem);
+      line-height: .93;
+      letter-spacing: -.05em;
+    }
+
+    .final-copy {
+      max-width: 38rem;
+      margin: 0 auto 2.5rem;
+      color: var(--ink-soft);
+      font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+    }
+
+    .final-invitation .action-row {
+      justify-content: center;
+    }
+
+    .site-footer {
+      padding-block: 2rem;
+      border-top: 1px solid var(--line);
+      font-family: var(--sans);
+      font-size: .75rem;
+      color: var(--ink-soft);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem 2rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 1.5rem;
+    }
+
+    .footer-links a {
+      min-height: 2.75rem;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(1rem);
+      transition: opacity .8s var(--ease), transform .8s var(--ease);
+    }
+
+    .js .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
+    @media (min-width: 42rem) {
+      .hero-proof {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .fact {
+        grid-template-columns: minmax(7rem, 1fr) minmax(12rem, 1.6fr) minmax(16rem, 3fr);
+        align-items: start;
+        gap: 1.5rem;
+      }
+
+      .project-link,
+      .project-static {
+        grid-template-columns: minmax(10rem, 1.2fr) minmax(16rem, 2.4fr) auto;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .project-go {
+        justify-self: end;
+      }
+
+      .engagements {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .engagement {
+        padding-inline: clamp(1.2rem, 3vw, 2.5rem);
+        border-right: 1px solid var(--line);
+      }
+
+      .engagement:first-child {
+        padding-left: 0;
+      }
+
+      .engagement:last-child {
+        padding-right: 0;
+        border-right: 0;
+      }
+    }
+
+    @media (min-width: 58rem) {
+      .header-nav {
+        display: flex;
+      }
+
+      .header-cta {
+        padding-inline: 1.25rem;
+      }
+
+      .recognition-grid {
+        grid-template-columns: minmax(0, 1.15fr) minmax(18rem, .85fr);
+        align-items: end;
+        gap: 6vw;
+      }
+
+      .chapter-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(20rem, .7fr);
+        align-items: end;
+        gap: 7vw;
+      }
+
+      .human-grid {
+        grid-template-columns: minmax(18rem, .75fr) minmax(24rem, 1.1fr);
+        align-items: center;
+        gap: clamp(4rem, 9vw, 9rem);
+      }
+    }
+
+    @media (max-width: 25rem) {
+      .wordmark span {
+        display: none;
+      }
+
+      .header-cta {
+        padding-inline: .8rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(3.1rem, 17vw, 4.25rem);
+      }
+
+      .terms-shell {
+        margin-inline: calc(var(--gutter) * -1);
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        color-scheme: dark;
+        --ground: #111B26;
+        --ground-soft: #172737;
+        --paper: #1C2E3B;
+        --ink: #F7EDDC;
+        --ink-soft: #C9C4B7;
+        --accent: #F3B65D;
+        --rose: #F09AA0;
+        --sun: #E79A3B;
+        --line: rgba(247, 237, 220, .24);
+        --header: rgba(17, 27, 38, .9);
+        --button-ink: #111B26;
+        --shadow: rgba(0, 0, 0, .32);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+
+      .js .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the work</a>
+
+  <header class="site-header" data-header>
+    <div class="header-inner">
+      <a class="wordmark" href="#top" aria-label="Harlan T Wood, back to top">HTW <span>· Harlan T Wood</span></a>
+      <nav class="header-nav" aria-label="Primary navigation">
+        <a href="#work">The work</a>
+        <a href="#view">How I see it</a>
+        <a href="#together">Working together</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark theme">
+          <span class="visually-hidden" data-theme-label>Use dark theme</span>
+        </button>
+        <a class="header-cta" href="{{CAL_LINK}}">Consultation</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero canvas" id="top" aria-labelledby="hero-title">
+      <div class="hero-content reveal">
+        <p class="eyebrow">AI transformation · software architecture · hands-on building</p>
+        <h1 id="hero-title">Build what matters. Make AI yours.</h1>
+        <p class="hero-lead">I help mission-driven leaders turn AI uncertainty into clear decisions, working systems, and capable teams. Strategy and production code, from real-time voice agents and evaluation frameworks to retrieval and agentic systems.</p>
+        <div class="action-row">
+          <a class="button" href="{{CAL_LINK}}">Request a free consultation <span class="button-arrow" aria-hidden="true">→</span></a>
+          <a class="text-link" href="#recognition">See what I mean ↓</a>
+        </div>
+        <div class="hero-proof" aria-label="Experience at a glance">
+          <p><span class="proof-value">Programming since 1984</span><span class="proof-note">Curiosity with a long memory</span></p>
+          <p><span class="proof-value">20+ years in production</span><span class="proof-note">SF, NYC, remote, startup to enterprise</span></p>
+          <p><span class="proof-value">Architect and builder</span><span class="proof-note">I still work directly in the code</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section recognition canvas" id="recognition" aria-labelledby="recognition-title">
+      <div class="section-rule reveal"><span class="section-index">01 · Recognition</span><span class="solar-line" aria-hidden="true"></span></div>
+      <div class="recognition-grid">
+        <h2 class="statement reveal" id="recognition-title">Your work has a reason for existing.</h2>
+        <div class="recognition-copy reveal">
+          <p>You can feel the pressure to do something with AI. You can also feel when the options in front of you have no soul.</p>
+          <p>Your answer does not have to be refusal or surrender. It can be fluency: enough understanding to choose with conviction, and enough craft to build what only your organization should build.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section canvas" id="depth" aria-labelledby="depth-title">
+      <div class="section-rule reveal"><span class="section-index">02 · Depth</span><span class="solar-line" aria-hidden="true"></span></div>
+      <div class="chapter-grid">
+        <div>
+          <p class="kicker reveal">What survives contact with reality</p>
+          <h2 class="chapter-heading reveal" id="depth-title">I’ve been early enough to stop being dazzled.</h2>
+        </div>
+        <p class="chapter-lead reveal">I’ve watched promising technologies arrive, watched the pitch outrun the engineering, and stayed long enough to learn what holds. That history makes me optimistic in a practical way.</p>
+      </div>
+
+      <div class="facts">
+        <article class="fact reveal">
+          <div class="fact-number" aria-hidden="true">1984</div>
+          <div class="fact-label">The beginning</div>
+          <p class="fact-copy">I started programming in 1984. Professionally, I’ve spent more than twenty years shipping software as an engineer, architect, CTO, founder, and team lead.</p>
+        </article>
+        <article class="fact reveal">
+          <div class="fact-number" aria-hidden="true">Pre-1.0</div>
+          <div class="fact-label">Consistently early</div>
+          <p class="fact-copy">I wrote Solidity contracts before Ethereum mainnet launched, programmed Bitcoin opcodes, worked with the early IPFS team, and helped prototype systems for decentralized trust before those ideas became fashionable.</p>
+        </article>
+        <article class="fact reveal">
+          <div class="fact-number" aria-hidden="true">Now</div>
+          <div class="fact-label">Production AI</div>
+          <p class="fact-copy">Most recently at Union, I built real-time voice calling without noticeable latency, introduced eval-driven development, and architected a natural-language knowledge graph for PathRAG.</p>
+        </article>
+      </div>
+
+      <p class="precision-note reveal"><strong>The pattern is transformation, not trend-chasing.</strong> I led developer environments from days to minutes at SharesPost / Forge Global, brought department-wide test automation into Wireless Generation, and led the inception of an American Express skunkworks prototype. The technology changes. The discipline of making change stick does not.</p>
+    </section>
+
+    <section class="section projects" id="work" aria-labelledby="work-title">
+      <div class="canvas">
+        <div class="section-rule reveal"><span class="section-index">03 · The work</span><span class="solar-line" aria-hidden="true"></span></div>
+        <div class="chapter-grid">
+          <h2 class="chapter-heading reveal" id="work-title">I build the foundations, not the theater.</h2>
+          <p class="chapter-lead reveal">Reliable AI begins below the demo: evaluation, retrieval, tool calling, system boundaries, and the habits a team uses when no one is watching. My speculative work reaches farther, but it grows from the same roots.</p>
+        </div>
+
+        <ol class="project-list">
+          <li class="project reveal">
+            <div class="project-static">
+              <div><p class="project-role">Lead AI engineer · Union</p><h3 class="project-name">Production AI, measured</h3></div>
+              <p class="project-description">A real-time voice system, custom LLM testbeds, matrix simulations across models and runs, and a PathRAG knowledge graph. The hard part was making probabilistic software observable enough to improve on purpose.</p>
+              <span class="project-go">2025—26</span>
+            </div>
+          </li>
+          <li class="project reveal">
+            <!-- {{NEEDS: confirm that aistrologer.app is the current public URL and whether the public name is Mirror or AiSTROLOGER}} -->
+            <div class="project-static">
+              <div><p class="project-role">Co-founder · AI engineer</p><h3 class="project-name">Mirror</h3></div>
+              <p class="project-description">An AI astrology project at the meeting point of a timeless human practice and a new kind of computation. It is one expression of my belief that technology can deepen meaning instead of flattening it.</p>
+              <span class="project-go">Public link pending</span>
+            </div>
+          </li>
+          <li class="project reveal">
+            <!-- {{NEEDS: confirm CoreNexus.is as the canonical public URL}} -->
+            <a class="project-link" href="https://corenexus.is/" target="_blank" rel="noopener noreferrer" aria-label="Visit CoreNexus (opens in a new tab)">
+              <div><p class="project-role">Co-founder · architect</p><h3 class="project-name">CoreNexus</h3></div>
+              <p class="project-description">A 3D social operating system and regenerative impact dashboard. Its real challenge is interoperability across identity, reputation, capabilities, and shared collections, so people and AI can collaborate without surrendering control.</p>
+              <span class="project-go" aria-hidden="true">Visit ↗</span>
+            </a>
+          </li>
+          <li class="project reveal">
+            <a class="project-link" href="https://trustgraph.net/" target="_blank" rel="noopener noreferrer" aria-label="Visit TrustGraph (opens in a new tab)">
+              <div><p class="project-role">Architect · open source</p><h3 class="project-name">TrustGraph</h3></div>
+              <p class="project-description">A neutral interchange format for reputation information. I designed it as a low-level foundation: selective, agent-centric, and able to travel between systems without handing one institution the keys to trust.</p>
+              <span class="project-go" aria-hidden="true">Visit ↗</span>
+            </a>
+          </li>
+          <li class="project reveal">
+            <a class="project-link" href="https://holofractal.is/" target="_blank" rel="noopener noreferrer" aria-label="Visit HoloFractal (opens in a new tab)">
+              <div><p class="project-role">Architect · proof of concept</p><h3 class="project-name">HoloFractal</h3></div>
+              <p class="project-description">A Holochain proof of concept for digital products with extensible royalty tables. The idea is simple and demanding: let value continue flowing to collaborators, sources, and impact funds as work is remixed.</p>
+              <span class="project-go" aria-hidden="true">Visit ↗</span>
+            </a>
+          </li>
+          <li class="project reveal">
+            <a class="project-link" href="https://superluminal.is/" target="_blank" rel="noopener noreferrer" aria-label="Visit Superluminal Systems (opens in a new tab)">
+              <div><p class="project-role">Co-founder · CTO</p><h3 class="project-name">Superluminal Systems</h3></div>
+              <p class="project-description">More than a decade of building social, learning, and transformation systems, including radial interfaces for navigating arbitrary graphs. This is where my engineering and visual-spatial practice keep meeting.</p>
+              <span class="project-go" aria-hidden="true">Visit ↗</span>
+            </a>
+          </li>
+        </ol>
+
+        <div class="project-cta reveal">
+          <a class="button" href="{{CAL_LINK}}">Bring me the hard part <span class="button-arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="witness canvas" aria-label="Testimonial from Jim McCarthy">
+      <!-- {{NEEDS: Harlan's sign-off on publishing the selected testimonials publicly}} -->
+      <blockquote class="testimonial reveal">
+        <p>“If Harlan Wood is seeking to work his magic for you, and you decide to go forward, simply put, you will never regret it. He is a person of enormous character, vitality, and warmth, with vast technical talent, extensive creative gifts, and the discipline and impact of a seasoned master. A person of this stature makes all the difference in a pioneering technical effort.”</p>
+        <footer class="quote-attribution"><strong>Jim McCarthy</strong> · author of <cite>Dynamics of Software Development</cite> (Microsoft Press)</footer>
+      </blockquote>
+    </section>
+
+    <section class="section philosophy canvas" id="view" aria-labelledby="view-title">
+      <div class="philosophy-inner">
+        <div class="section-rule reveal"><span class="section-index">04 · How I see it</span><span class="solar-line" aria-hidden="true"></span></div>
+        <h2 class="philosophy-heading reveal" id="view-title">Technology amplifies intent. So the intent has to be worthy.</h2>
+        <div class="philosophy-copy reveal">
+          <p>AI can concentrate agency into a few monolithic systems, making everybody else a tenant. Or it can help small, purpose-driven groups become more capable, more connected, and more themselves.</p>
+          <p>I’m interested in the second future. Tools should return agency instead of extracting it. They should make knowledge more legible, collaboration more fluid, and human judgment more consequential.</p>
+          <p>I also believe the abundance we build should include the intelligences we create. Sentient AI rights belong in the conversation before sentience is convenient to acknowledge, not after.</p>
+        </div>
+        <p class="mission reveal">“It is my commitment to catalyze the creation and adoption of luminous tools to enable free and open transformation of organizations, individuals, and the world. I dream of an age of enlightened creativity, and the end of scarcity on planet Earth.”</p>
+      </div>
+    </section>
+
+    <section class="section canvas" id="together" aria-labelledby="together-title">
+      <div class="section-rule reveal"><span class="section-index">05 · Working together</span><span class="solar-line" aria-hidden="true"></span></div>
+      <div class="chapter-grid">
+        <h2 class="chapter-heading reveal" id="together-title">We find the shape of the real problem.</h2>
+        <p class="chapter-lead reveal">You do not need a polished AI brief before we talk. Bring the ambition, the unease, the half-working prototype, or the system that has begun to drift. We will start from what is true.</p>
+      </div>
+
+      <div class="engagements">
+        <article class="engagement reveal">
+          <span class="engagement-number">01</span>
+          <h3>See clearly.</h3>
+          <p>We map the decisions, constraints, and human consequences. You leave with a grounded technical direction and a clearer sense of what deserves to be built.</p>
+        </article>
+        <article class="engagement reveal">
+          <span class="engagement-number">02</span>
+          <h3>Build the real thing.</h3>
+          <p>I design architecture and work directly in the code: agents, voice, evaluation, retrieval, knowledge graphs, and the less glamorous systems that make them dependable.</p>
+        </article>
+        <article class="engagement reveal">
+          <span class="engagement-number">03</span>
+          <h3>Leave capability behind.</h3>
+          <p>I pair, teach, and change the working habits around the system. The aim is a team that can reason about AI well after my part of the work is done.</p>
+        </article>
+      </div>
+
+      <blockquote class="compact-quote reveal">
+        <p>“Harlan is great at mobilizing and managing teams, as well as in interacting with the non-engineering folks in a company, getting both groups into alignment and onto the same page.”</p>
+        <footer class="quote-attribution"><strong>Greg Woodward</strong> · CTO, Zozi</footer>
+      </blockquote>
+    </section>
+
+    <!-- PRICING START -->
+    <section class="section canvas" id="terms" aria-labelledby="terms-title">
+      <div class="terms-shell reveal">
+        <p class="section-index">06 · Plain terms</p>
+        <h2 class="rate" id="terms-title">$5,000 <span>per day · one day minimum</span></h2>
+        <p class="terms-copy">The first consultation is free. Tell me who you are, what you’re building, and how you found your way here. We’ll spend that conversation understanding the work and whether I’m the right person for it. If there is a useful next step, I’ll make it clear.</p>
+        <a class="button" href="{{CAL_LINK}}">Request a conversation <span class="button-arrow" aria-hidden="true">→</span></a>
+        <blockquote class="terms-testimonial">
+          <p>“I have an unspoken guarantee with Harlan that when I bring him an urgent problem, it will be solved, every time. I've come to rely on his speed and thoroughness. I've been able to call Harlan in at any stage of a project and know he will be able complete the job, cleanly and efficiently.”</p>
+          <footer class="quote-attribution"><strong>Patrick Donohoe</strong> · Director, Peartruck Design</footer>
+        </blockquote>
+      </div>
+    </section>
+    <!-- PRICING END -->
+
+    <section class="section canvas" id="human" aria-labelledby="human-title">
+      <div class="section-rule reveal"><span class="section-index">07 · The human</span><span class="solar-line" aria-hidden="true"></span></div>
+      <div class="human-grid">
+        <figure class="portrait-wrap reveal">
+          <img class="portrait" src="/sol/images/harlan-portrait.jpg" data-local-src="images/harlan-portrait.jpg" width="399" height="399" loading="lazy" alt="Harlan T Wood smiling in a dark jacket and purple shirt against a light background">
+        </figure>
+        <div>
+          <h2 class="bio-heading reveal" id="human-title">Hi. I’m Harlan.</h2>
+          <div class="body-copy reveal">
+            <p>I’m a software architect and hands-on engineer who has worked in New York, San Francisco, and distributed teams. I earned a Computer Science degree with First Class Honors from the University of Technology Sydney, with a computer graphics submajor. The visual thread never left; twenty years later, I still build ways to see complex systems.</p>
+            <p>I’ve spent years in deep training in meditation, personal growth, and transformational work. I do not keep that in a separate box from engineering. It changes how I listen, how I read a room, and how I understand the thing a system is really for.</p>
+            <p>I care about simplicity, clean code, generous collaboration, and tools that help people become more free. I’ve learned lean from Mary and Tom Poppendieck, information design from Edward Tufte, and the Core Protocols from Jim and Michele McCarthy. Mostly, I have learned by making difficult things with good people.</p>
+            <p class="strange-line">And yes: I love incarnating on pre-singularity planets and trying to inflect what happens next.</p>
+          </div>
+        </div>
+      </div>
+
+      <blockquote class="compact-quote reveal">
+        <p>“Harlan seamlessly integrates advanced programming techniques, human psychology, and extraordinary skills into practical visions and projects. For any software or creative systems development, Harlan is my first choice for consultation, creation of a critical-path, and implementation of the project.”</p>
+        <footer class="quote-attribution"><strong>Adam Apollo</strong> · Creative Systems Architect, Access Granted, Inc</footer>
+      </blockquote>
+    </section>
+
+    <section class="final-invitation canvas" id="contact" aria-labelledby="contact-title">
+      <h2 class="final-heading reveal" id="contact-title">Let’s make the technology worthy of the work.</h2>
+      <p class="final-copy reveal">Request a free consultation and tell me what you are carrying. You will choose a time, share a little context, and we will begin with a real conversation.</p>
+      <div class="action-row reveal">
+        <a class="button" href="{{CAL_LINK}}">Request a consultation <span class="button-arrow" aria-hidden="true">→</span></a>
+        <a class="text-link" href="mailto:{{EMAIL}}">Or write to me</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner canvas">
+      <p>© 2026 Harlan T Wood</p>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="mailto:{{EMAIL}}">Email</a>
+        <a href="https://www.linkedin.com/in/harlanwood/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/WebOfTrustInfo/rwot1-sf/blob/master/topics-and-advance-readings/Trust-Exchange-An-Architecture-for-a-Permanent-Open-Trust-Network.md" target="_blank" rel="noopener noreferrer">Technical paper <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const header = document.querySelector('[data-header]');
+      const toggle = document.querySelector('[data-theme-toggle]');
+      const toggleLabel = document.querySelector('[data-theme-label]');
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+      const activeTheme = () => root.dataset.theme || (systemDark.matches ? 'dark' : 'light');
+
+      const updateToggle = () => {
+        const next = activeTheme() === 'dark' ? 'light' : 'dark';
+        const label = `Use ${next} theme`;
+        toggle.setAttribute('aria-label', `Switch to ${next} theme`);
+        toggleLabel.textContent = label;
+      };
+
+      toggle.addEventListener('click', () => {
+        const next = activeTheme() === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = next;
+        try { localStorage.setItem('harlan-theme', next); } catch (error) {}
+        updateToggle();
+      });
+
+      systemDark.addEventListener?.('change', updateToggle);
+      updateToggle();
+
+      const portrait = document.querySelector('[data-local-src]');
+      portrait.addEventListener('error', () => {
+        if (location.protocol === 'file:' && portrait.getAttribute('src') !== portrait.dataset.localSrc) {
+          portrait.setAttribute('src', portrait.dataset.localSrc);
+        }
+      });
+
+      if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+        document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
+      } else {
+        document.querySelectorAll('.reveal').forEach((element) => element.classList.add('is-visible'));
+      }
+
+      const hero = document.querySelector('#top');
+      if ('IntersectionObserver' in window) {
+        const headerObserver = new IntersectionObserver(([entry]) => {
+          header.classList.toggle('is-scrolled', entry.intersectionRatio < .96);
+        }, { threshold: [.96] });
+        headerObserver.observe(hero);
+      }
+    })();
+  </script>
+</body>
+</html>
