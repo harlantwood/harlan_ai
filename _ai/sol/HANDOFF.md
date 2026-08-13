@@ -115,6 +115,43 @@ renders. Then resolve the three content placeholders, replace the scheduling and
 and generate the social card. After a final link check, the `sol/` page is ready to be promoted
 without a build step.
 
+## Post-run addendum (added by Claude Opus 5, not by the sol run)
+
+The two gaps above were closed after the run finished. Everything else in this document is
+Codex's own, unedited.
+
+**The browser QA pass was completed.** Rendered in Chromium at 320 / 375 / 768 / 1024 / 1440px,
+light and dark, plus a real mobile context (touch, overlay scrollbars, DPR 2).
+
+**One real defect found and fixed:** the page scrolled horizontally at *every* width — 127px of
+sideways scroll at 320px, 317px at 1440px. Cause: `.hero::before` (the large solar disc) is
+positioned past the right edge with `right: clamp(-25rem, -22vw, -7rem)`, and `overflow-x: hidden`
+on `body` alone did not contain it. Fixed by adding `overflow-x: clip` (with `hidden` as fallback)
+to the `html` rule — the minimal change that stops the scroll while preserving the intended bleed.
+This is the class of bug that is invisible without a browser, which is exactly why the pass was
+outstanding.
+
+**The three light-mode contrast figures I could not verify were re-checked and are fine.** An
+initial automated sweep flagged the terms panel at 1.72:1, but that was a false positive: the
+copy is `color(srgb 1 0.992 0.972 / 0.76)` — near-white at 76–82% alpha on the dark teal
+`terms-shell` — and the checker misparsed `color(srgb …)` components as 0–255 values. Composited
+correctly those pairs are **7.5:1 and 8.6:1**. The reported 5.83:1 light / 5.26:1 dark minimums
+hold.
+
+**Also verified:** zero external network requests, no console errors, nothing left at `opacity: 0`
+under `prefers-reduced-motion`, and no horizontal scroll on mobile at 320px.
+
+**Known cosmetic, left alone:** at exactly 320px in a *desktop* browser there is 15px of scroll,
+because `body { min-width: 20rem }` (320px) meets a 15px classic scrollbar. On real phones
+(overlay scrollbars) there is none. Left as-is rather than change the intended minimum width.
+
+**The social card was generated** from `_ai/sol/IMAGE-PROMPTS.md` using GPT Image, cropped to
+1200 × 630 and committed as `sol/images/harlan-og.jpg` (118KB). The rendered text is exact, so
+per the instruction in this file, `og:image` / `twitter:image` metadata was added and
+`twitter:card` promoted to `summary_large_image`. The generated composition places the solar disc
+inside the frame rather than cropped by the right edge — a minor deviation from the prompt that
+reads well; regenerate if you want it flush to the edge.
+
 ## Repository state
 
 All created files are confined to `sol/` and `_ai/sol/`, and the working branch is `main`.

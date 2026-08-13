@@ -11,9 +11,14 @@
   <meta property="og:url" content="https://ha.rlan.ai/sol/">
   <meta property="og:title" content="Harlan T Wood — Build what matters. Make AI yours.">
   <meta property="og:description" content="AI transformation, software architecture, and hands-on implementation for work with a reason for existing.">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://ha.rlan.ai/sol/images/harlan-og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Harlan T Wood — Build what matters. Make AI yours.">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Harlan T Wood — Build what matters. Make AI yours.">
   <meta name="twitter:description" content="AI transformation, software architecture, and hands-on implementation for work with a reason for existing.">
+  <meta name="twitter:image" content="https://ha.rlan.ai/sol/images/harlan-og.jpg">
   <script>
     document.documentElement.classList.add('js');
     try {
@@ -69,6 +74,13 @@
     html {
       scroll-behavior: smooth;
       background: var(--ground);
+      /* The decorative discs (.hero::before and friends) are positioned past
+         the right edge on purpose. `overflow-x: hidden` on body alone did not
+         contain them, so the document scrolled sideways at every width. `clip`
+         contains the bleed without creating a scroll container; `hidden` is the
+         fallback for browsers without `clip`. */
+      overflow-x: hidden;
+      overflow-x: clip;
     }
 
     body {
