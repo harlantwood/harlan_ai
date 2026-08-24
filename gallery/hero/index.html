@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hero images — review gallery</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='22' cy='11' r='6' fill='%23e9b14e' opacity='.85'/%3E%3Crect x='3' y='22' width='26' height='2' rx='1' fill='%231f6b68'/%3E%3C/svg%3E" />
+    <style>
+      * { box-sizing: border-box; margin: 0; }
+      body {
+        background: #fdfbf6;
+        color: #16202b;
+        font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        padding: clamp(1.5rem, 5vw, 4rem);
+      }
+      header.page { max-width: 60rem; margin: 0 auto clamp(2rem, 6vh, 3.5rem); }
+      h1 {
+        font-family: "Iowan Old Style", Palatino, Georgia, serif;
+        font-weight: 600; letter-spacing: -0.02em;
+        font-size: clamp(1.9rem, 5vw, 3rem); margin-bottom: 0.6rem;
+      }
+      header.page p { color: #4c5964; max-width: 46ch; line-height: 1.6; }
+      .shots { max-width: 68rem; margin: 0 auto; display: grid; gap: clamp(2rem, 6vh, 3.5rem); }
+      figure {
+        border: 1px solid rgba(22, 32, 43, 0.12);
+        border-radius: 14px; overflow: hidden; background: #fffdf8;
+      }
+      figure img { display: block; width: 100%; height: auto; }
+      figcaption { padding: 1rem 1.25rem 1.4rem; }
+      .row { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem; }
+      .n { font-family: "Iowan Old Style", Palatino, Georgia, serif; font-size: 1.6rem; }
+      .name { color: #8a5a12; letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.72rem; font-weight: 600; }
+      figcaption p { color: #4c5964; font-size: 0.95rem; line-height: 1.6; max-width: 62ch; }
+      .fav { color: #8a5a12; font-weight: 600; }
+      footer.page { max-width: 60rem; margin: clamp(2.5rem, 6vh, 4rem) auto 0; color: #67747f; font-size: 0.85rem; }
+    </style>
+  </head>
+  <body>
+    <header class="page">
+      <h1>Hero images</h1>
+      <p>
+        Three GPT Image candidates for a still hero, each composed with calm space on the left for
+        the headline. All avoid the sun/neon/robot/brain clich&eacute;s. My favourite is marked.
+      </p>
+    </header>
+
+    <main class="shots">
+      <figure>
+        <img src="/gallery/hero/1.jpg" width="1600" height="1067" alt="Candidate 1: warm morning light in a minimal architectural interior" loading="lazy" />
+        <figcaption>
+          <div class="row"><span class="n">1</span><span class="name">Architectural light</span></div>
+          <p>Morning light in a calm, minimal room. Warm and human; the safest, most editorial option.</p>
+        </figcaption>
+      </figure>
+
+      <figure>
+        <img src="/gallery/hero/2.jpg" width="1600" height="1067" alt="Candidate 2: gold and teal contour lines resolving into order" loading="lazy" />
+        <figcaption>
+          <div class="row"><span class="n">2</span><span class="name">Contour topography</span></div>
+          <p>
+            <span class="fav">My favourite (of the stills).</span> Gold and teal contours resolving
+            from complexity into order &mdash; it ties straight to &ldquo;we find the shape of the
+            real problem,&rdquo; and reads as architecture and clarity.
+          </p>
+        </figcaption>
+      </figure>
+
+      <figure>
+        <img src="/gallery/hero/3.jpg" width="1600" height="1067" alt="Candidate 3: soft prismatic dawn washes of gold, rose, and teal" loading="lazy" />
+        <figcaption>
+          <div class="row"><span class="n">3</span><span class="name">Prismatic dawn</span></div>
+          <p>Soft washes of dawn light. The most atmospheric; lovely, but quietest on its own.</p>
+        </figcaption>
+      </figure>
+    </main>
+
+    <footer class="page">
+      <p>Note: the animated three.js header is the likely hero. See <a href="/gallery/header/">/gallery/header/</a>. These stills are the alternate direction.</p>
+    </footer>
+  </body>
+</html>

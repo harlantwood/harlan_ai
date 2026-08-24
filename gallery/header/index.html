@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Header scenes — review gallery</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='3' fill='%23e9b14e'/%3E%3Ccircle cx='7' cy='9' r='2' fill='%2363cabf'/%3E%3Ccircle cx='25' cy='11' r='2' fill='%23e79aa0'/%3E%3Cg stroke='%23e9b14e' stroke-width='1' opacity='.6'%3E%3Cpath d='M16 16 7 9M16 16 25 11'/%3E%3C/g%3E%3C/svg%3E" />
+    <style>
+      :root {
+        --ground: #100d0b;
+        --ink: #f4ecd9;
+        --ink-soft: #b9ad93;
+        --gold: #e9b14e;
+      }
+      * { box-sizing: border-box; margin: 0; }
+      body {
+        background: #100d0b;
+        color: #f4ecd9;
+        font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        padding: clamp(1.5rem, 5vw, 4rem);
+      }
+      header.page { max-width: 60rem; margin: 0 auto clamp(2rem, 6vh, 4rem); }
+      h1 {
+        font-family: "Iowan Old Style", Palatino, Georgia, serif;
+        font-weight: 600; letter-spacing: -0.02em;
+        font-size: clamp(1.9rem, 5vw, 3rem); margin-bottom: 0.6rem;
+      }
+      header.page p { color: #b9ad93; max-width: 44ch; line-height: 1.6; }
+      .scenes { max-width: 72rem; margin: 0 auto; display: grid; gap: clamp(2rem, 6vh, 4rem); }
+      .scene {
+        border: 1px solid rgba(233, 177, 78, 0.22);
+        border-radius: 14px;
+        overflow: hidden;
+        background:
+          radial-gradient(120% 120% at 78% 22%, rgba(233,177,78,0.10) 0, transparent 60%),
+          radial-gradient(120% 120% at 20% 90%, rgba(99,202,191,0.08) 0, transparent 60%),
+          #14100c;
+        position: relative;
+      }
+      .scene canvas { display: block; width: 100%; height: min(70vh, 620px); }
+      @media (max-width: 720px) { .scene canvas { height: 52vh; } }
+      .label {
+        position: absolute; top: 1rem; left: 1.15rem; right: 1.15rem;
+        display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+        pointer-events: none;
+      }
+      .label .n {
+        font-family: "Iowan Old Style", Palatino, Georgia, serif;
+        font-size: 1.5rem; color: #f4ecd9;
+      }
+      .label .name { color: #e9b14e; letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.72rem; font-weight: 600; }
+      .caption { padding: 1rem 1.25rem 1.35rem; }
+      .caption p { color: #b9ad93; font-size: 0.95rem; line-height: 1.6; max-width: 60ch; }
+      .fav { color: #e9b14e; font-weight: 600; }
+      footer.page { max-width: 60rem; margin: clamp(2.5rem, 6vh, 4rem) auto 0; color: #8c8270; font-size: 0.85rem; }
+      .nojs { color: #e79aa0; padding: 1rem 1.25rem; }
+    </style>
+  </head>
+  <body>
+    <header class="page">
+      <h1>Header scenes</h1>
+      <p>
+        Three live three.js scenes for the site header, inspired by Harlan&rsquo;s work &mdash;
+        trust graphs, node sculptures, and mycelial networks &mdash; in the luminous warm palette
+        rather than the usual cold particle-web. Scroll through; each animates when it&rsquo;s on
+        screen. My favourite is marked.
+      </p>
+    </header>
+
+    <main class="scenes">
+      <section class="scene">
+        <div class="label"><span class="n">1</span><span class="name">Mycelium</span></div>
+        <canvas data-scene="mycelium" aria-label="Scene 1: a living force-graph that breathes and drifts"></canvas>
+        <div class="caption">
+          <p>
+            <span class="fav">My favourite.</span> A living force-graph: warm nodes and filaments
+            that breathe, drift, and slowly reorganise. The clearest expression of trust graphs and
+            mycelial networks, and it leaves a calm area on the left for the headline.
+          </p>
+        </div>
+      </section>
+
+      <section class="scene">
+        <div class="label"><span class="n">2</span><span class="name">Sculpture</span></div>
+        <canvas data-scene="sculpture" aria-label="Scene 2: a slowly rotating luminous node-sphere"></canvas>
+        <div class="caption">
+          <p>
+            A slowly rotating node-sculpture &mdash; thousands of points of warm light on an
+            organic sphere, laced with faint links. Evokes &ldquo;node sculptures created by AI
+            while you sleep.&rdquo; The most jewel-like of the three.
+          </p>
+        </div>
+      </section>
+
+      <section class="scene">
+        <div class="label"><span class="n">3</span><span class="name">Flow field</span></div>
+        <canvas data-scene="flowfield" aria-label="Scene 3: points streaming along a slow curl of light"></canvas>
+        <div class="caption">
+          <p>
+            Points streaming along a slow curl of light, like data finding its channels. The most
+            atmospheric and painterly; less overtly a &ldquo;graph,&rdquo; more a field of
+            emergence.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="page">
+      <p>Self-contained: vendored three.js, no external requests. Honours reduced-motion (renders a still frame).</p>
+    </footer>
+
+    <script src="/vendor/three.min.js"></script>
+    <script src="/vendor/graph-scenes.js"></script>
+    <script>
+      (function () {
+        if (!window.THREE || !window.GraphScenes) {
+          document.querySelectorAll(".scene").forEach(function (s) {
+            var d = document.createElement("div");
+            d.className = "nojs";
+            d.textContent = "WebGL unavailable in this browser.";
+            s.appendChild(d);
+          });
+          return;
+        }
+        document.querySelectorAll("canvas[data-scene]").forEach(function (c) {
+          var fn = GraphScenes[c.getAttribute("data-scene")];
+          if (fn) fn(c);
+        });
+      })();
+    </script>
+  </body>
+</html>
