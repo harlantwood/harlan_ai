@@ -44,9 +44,8 @@ Jack Senechal → Terms → bio → invitation → footer.
 ## Galleries (for your review — pushed earlier)
 
 - **`/gallery/hero/`** — 3 GPT Image stills. My favorite: #2 (contour topography).
-- **`/gallery/header/`** — 3 live three.js scenes. My favorite: #1 (mycelium), which is what's on
-  `/next`. #2 (sculpture) is the jewel-like runner-up; say the word and I'll swap it in (one line:
-  `GraphScenes.mycelium` → `GraphScenes.sculpture`).
+- **`/gallery/header/`** — 3 live three.js scenes. Harlan chose **#2 (sculpture)**, now live on
+  `/next`. (To try another it's one line: `GraphScenes.sculpture` → `.mycelium` / `.flowfield`.)
 
 To use a **still** hero instead of the animation, the images are ready at `/gallery/hero/N.jpg`.
 
@@ -62,7 +61,7 @@ the hero (`/next/images/og.jpg`).
 
 - [ ] **Headline set** — I chose five. Add/cut/reword any; they live in the `HEADLINES` array near
   the bottom of `next/index.html`.
-- [ ] **Which three.js scene** — mycelium (current) vs sculpture vs flowfield.
+- [x] **Which three.js scene** — sculpture (chosen 2026-08-25).
 - [ ] **Location** — omitted from the bio pending Hawaii vs Azores (résumé says Azores; your
   Holochain intro and 808 number say Hawaii). Tell me and I'll add it.
 - [ ] **Testimonial sign-off** — McCarthy, Greg Woodward, Jack Senechal, Noah Thorp are used;

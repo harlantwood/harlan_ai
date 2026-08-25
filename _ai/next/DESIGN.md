@@ -10,9 +10,9 @@ The single move that makes this version its own thing: **the hero is a deep, war
 rest of the page rises out of into luminous daylight.**
 
 - The hero is always a deep warm ground (`--hero-ground: #100d0b`) regardless of theme — the only
-  ground on which a glowing graph reads well. A live **three.js node-graph** (the "mycelium"
-  scene, shared from `/vendor/graph-scenes.js`) drifts and breathes behind the headline in warm
-  gold/teal/rose.
+  ground on which a glowing graph reads well. A live **three.js node-graph** (the "sculpture"
+  scene — a slowly rotating jewel-like node-sphere; Harlan's pick — shared from
+  `/vendor/graph-scenes.js`) turns behind the headline in warm gold/teal/rose.
 - A left-weighted scrim keeps the headline crisp over the graph; a bottom gradient **melts the
   deep hero into the page's ivory ground.** That transition is the whole concept: night → dawn →
   the calm, light, luminous system below.
