@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aurora variations — review gallery</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg stroke='%2363cabf' stroke-width='2' stroke-linecap='round' opacity='.9'%3E%3Cpath d='M9 6v14M16 4v18M23 7v13'/%3E%3C/g%3E%3Crect x='4' y='24' width='24' height='2' rx='1' fill='%23e9b14e'/%3E%3C/svg%3E" />
+    <style>
+      * { box-sizing: border-box; margin: 0; }
+      body {
+        background: #0c1016; color: #eef1f4;
+        font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased; padding: clamp(1.5rem, 5vw, 4rem);
+      }
+      header.page { max-width: 60rem; margin: 0 auto clamp(2rem, 6vh, 3.5rem); }
+      h1 { font-family: "Iowan Old Style", Palatino, Georgia, serif; font-weight: 600; letter-spacing: -0.02em; font-size: clamp(1.9rem, 5vw, 3rem); margin-bottom: 0.6rem; }
+      header.page p { color: #9fb0be; max-width: 52ch; line-height: 1.6; }
+      .group-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #63cabf; margin: 2.5rem auto 0; max-width: 72rem; }
+      .shots { max-width: 72rem; margin: 1rem auto 0; display: grid; gap: clamp(1.5rem, 4vh, 2.5rem); }
+      figure { border: 1px solid rgba(99,202,191,0.22); border-radius: 14px; overflow: hidden; background: #10151d; }
+      figure img { display: block; width: 100%; height: auto; }
+      figcaption { padding: 1rem 1.25rem 1.4rem; }
+      .row { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 0.4rem; }
+      .n { font-family: "Iowan Old Style", Palatino, Georgia, serif; font-size: 1.5rem; }
+      .name { color: #e9b14e; letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.72rem; font-weight: 600; }
+      figcaption p { color: #9fb0be; font-size: 0.95rem; line-height: 1.6; max-width: 62ch; }
+      .fav { color: #e9b14e; font-weight: 600; }
+      footer.page { max-width: 60rem; margin: clamp(2.5rem, 6vh, 4rem) auto 0; color: #6f7d89; font-size: 0.85rem; }
+      a { color: #e9b14e; }
+    </style>
+  </head>
+  <body>
+    <header class="page">
+      <h1>Aurora &mdash; real vertical sheets</h1>
+      <p>
+        Reworked as a real aurora: vertical curtains, rays, and folds hanging from the sky.
+        Generated on gpt-image-2. Two subtle, two bold, per your (and your wife&rsquo;s) note.
+        The subtle pair sits closest to the site&rsquo;s warm palette; the bold pair is
+        gorgeous but leans into classic multicolour aurora.
+      </p>
+    </header>
+
+    <p class="group-label">Subtle</p>
+    <main class="shots">
+      <figure>
+        <img src="/gallery/aurora/1.jpg" width="1600" height="1067" alt="Faint vertical aurora pillars low over still water under a deep night sky" loading="lazy" />
+        <figcaption>
+          <div class="row"><span class="n">1</span><span class="name">Subtle &middot; light pillars</span></div>
+          <p>
+            <span class="fav">My favourite of the four.</span> Faint vertical pillars low on the
+            horizon, mirrored in still water, a vast calm sky. Real aurora structure, on-palette,
+            and a huge quiet area on the left for the headline.
+          </p>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="/gallery/aurora/2.jpg" width="1600" height="1067" alt="Soft vertical aurora over a mountain lake at dusk in teal and gold" loading="lazy" />
+        <figcaption>
+          <div class="row"><span class="n">2</span><span class="name">Subtle &middot; dusk lake</span></div>
+          <p>Soft vertical rays over a mountain lake at dusk, teal and gold. Serene and understated; the calmest of the set.</p>
+        </figcaption>
+      </figure>
+    </main>
+
+    <p class="group-label">Bold</p>
+    <main class="shots">
+      <figure>
+        <img src="/gallery/aurora/3.jpg" width="1600" height="1067" alt="A dramatic auroral corona of vertical rays over mountains and a lake" loading="lazy" />
+        <figcaption>
+          <div class="row"><span class="n">3</span><span class="name">Bold &middot; corona</span></div>
+          <p>A full corona of vertical rays converging overhead. The most epic and dramatic &mdash; also the most multicolour, further from the warm palette.</p>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="/gallery/aurora/4.jpg" width="1600" height="1067" alt="Towering vertical aurora curtains over a fjord with reflection" loading="lazy" />
+        <figcaption>
+          <div class="row"><span class="n">4</span><span class="name">Bold &middot; curtains</span></div>
+          <p>Towering vertical curtains dropping into a fjord, strong folds and reflection. Bold and beautiful; the strongest real-aurora structure.</p>
+        </figcaption>
+      </figure>
+    </main>
+
+    <footer class="page">
+      <p>Say which number (and subtle vs bold) and I&rsquo;ll wire it in &mdash; as the hero backdrop behind the rotating headline, or as a full-bleed section band. The animated three.js header is still on <a href="/next/">/next/</a>.</p>
+    </footer>
+  </body>
+</html>
