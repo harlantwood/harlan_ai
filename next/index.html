@@ -482,6 +482,100 @@
         .reveal { opacity: 1; transform: none; }
         .rot { opacity: 1 !important; }
       }
+
+      /* ============================================================
+         Print — black-and-white review copy.
+         Flattens the luminous/dark palette to ink-on-white, drops the
+         animated + interactive chrome, and shows link URLs so the copy
+         and destinations can be checked on paper.
+         ============================================================ */
+      @media print {
+        /* Re-map every semantic token to grayscale so the existing rules
+           (and the SVG strokes that use var(--ink/gold/teal)) print as ink. */
+        :root,
+        :root[data-theme="dark"],
+        :root[data-theme="light"] {
+          --ground: #fff;
+          --ground-2: #fff;
+          --ink: #000;
+          --ink-soft: #222;
+          --ink-faint: #444;
+          --gold: #000;
+          --gold-deep: #000;
+          --teal: #000;
+          --rose: #000;
+          --glow-gold: transparent;
+          --glow-rose: transparent;
+          --glow-teal: transparent;
+          --hairline: #999;
+          --hero-ground: #fff;
+          --hero-ink: #000;
+          --hero-ink-soft: #222;
+          --hero-hairline: #999;
+        }
+
+        @page { margin: 16mm; }
+
+        html { scroll-behavior: auto; }
+        body {
+          background: #fff !important;
+          color: #000 !important;
+          font-size: 11pt;
+          line-height: 1.45;
+        }
+
+        /* Drop the interactive + animated chrome. */
+        .site-header,
+        .hero-canvas,
+        .hero-scrim,
+        .hero-fade,
+        .theme-toggle,
+        .rot-toggle,
+        .skip-link { display: none !important; }
+
+        /* IntersectionObserver reveals never fire without scrolling, so force
+           every deferred element visible — otherwise the page prints blank. */
+        .reveal { opacity: 1 !important; transform: none !important; }
+
+        /* Tighten the giant vertical rhythm so it doesn't waste pages. */
+        section { padding-block: 1.4rem !important; }
+        .hero {
+          min-height: 0 !important;
+          padding: 0 0 1.2rem !important;
+          background: #fff !important;
+          color: #000 !important;
+        }
+        .hero-headline { min-height: 0 !important; }
+        .hero .lede, .hero .eyebrow, .hero__meta { color: #000 !important; }
+
+        /* Buttons as outlined text, not toner-hungry filled pills. */
+        .cta, .cta--ondark {
+          background: transparent !important;
+          color: #000 !important;
+          border: 1px solid #000;
+          box-shadow: none !important;
+          padding: 0.4em 0.9em;
+        }
+
+        a { color: #000 !important; text-decoration: underline; }
+
+        /* Surface destinations for review (URL verification). */
+        .projects a[href^="http"]::after,
+        .footer-grid a[href^="http"]::after {
+          content: " (" attr(href) ")";
+          font-family: var(--sans);
+          font-size: 0.8em;
+          font-weight: 400;
+          color: #555;
+          word-break: break-all;
+        }
+
+        /* Keep coherent blocks together across page breaks. */
+        h1, h2, h3 { break-after: avoid; }
+        .item, .offer, .engagement, figure.quote, .diagram,
+        .thread li, .terms li, .cta-row { break-inside: avoid; }
+        img { break-inside: avoid; }
+      }
     </style>
   </head>
 
@@ -1177,6 +1271,18 @@
             function start() { if (!timer) timer = setInterval(step, PERIOD); }
             function stop() { clearInterval(timer); timer = null; }
             start();
+
+            // Print the canonical headline, not whatever frame the rotation
+            // happens to be on when Print is invoked.
+            window.addEventListener("beforeprint", function () {
+              stop();
+              rot.classList.remove("is-fading");
+              idx = 0;
+              rot.textContent = HEADLINES[0];
+            });
+            window.addEventListener("afterprint", function () {
+              if (!paused) start();
+            });
 
             if (toggle) {
               toggle.style.display = "inline-flex";
