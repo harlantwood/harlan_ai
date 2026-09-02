@@ -3,28 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Harlan T Wood — Build what matters. Make AI yours.</title>
+    <title>Harlan T Wood — Build it. Harden it. Automate it.</title>
     <meta
       name="description"
-      content="25 years building and shipping production software. I help mission-driven people and organizations build with AI — clearly, carefully, and in a way that stays theirs."
+      content="25 years building software. I help mission-driven people and organizations build with AI — powerfully expressing their vision with integrity and heart."
     />
     <link rel="canonical" href="https://ha.rlan.ai/next/" />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://ha.rlan.ai/next/" />
-    <meta property="og:title" content="Harlan T Wood — Build what matters. Make AI yours." />
+    <meta property="og:title" content="Harlan T Wood — Build it. Harden it. Automate it." />
     <meta
       property="og:description"
-      content="25 years building software. I help mission-driven people and organizations build with AI — clearly, and in a way that stays theirs."
+      content="25 years building software. I help mission-driven people and organizations build with AI — powerfully expressing their vision with integrity and heart."
     />
     <meta property="og:image" content="https://ha.rlan.ai/next/images/og.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Harlan T Wood — Build what matters. Make AI yours." />
+    <meta name="twitter:title" content="Harlan T Wood — Build it. Harden it. Automate it." />
     <meta
       name="twitter:description"
-      content="25 years building software. I help mission-driven people build with AI — clearly, and in a way that stays theirs."
+      content="25 years building software. I help mission-driven people build with AI — expressing their vision with integrity and heart."
     />
     <meta name="twitter:image" content="https://ha.rlan.ai/next/images/og.jpg" />
     <meta name="theme-color" content="#100d0b" />
@@ -425,7 +425,10 @@
 
       /* ============================================================ Diagram */
       .diagram { margin: 3.5rem 0 0; max-width: 52rem; }
-      .diagram svg { width: 100%; height: auto; }
+      .diagram img {
+        width: 100%; border-radius: 12px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 18px 60px -18px var(--glow-gold);
+      }
       .diagram figcaption {
         font-family: var(--sans); font-size: 0.85rem; color: var(--ink-faint);
         margin-top: 1rem; max-width: 34em;
@@ -570,6 +573,10 @@
           word-break: break-all;
         }
 
+        /* The mycelium image is a near-black photo; spare the toner on review
+           copies and keep just its caption for proofreading. */
+        .diagram img { display: none !important; }
+
         /* Keep coherent blocks together across page breaks. */
         h1, h2, h3 { break-after: avoid; }
         .item, .offer, .engagement, figure.quote, .diagram,
@@ -612,11 +619,11 @@
         <div class="wrap hero-inner">
           <p class="eyebrow">Harlan T Wood &middot; AI &amp; software</p>
           <h1 class="hero-headline">
-            <span class="rot" data-rotator>Build what matters. Make AI yours.</span>
+            <span class="rot" data-rotator>Build it. Harden it. Automate it.</span>
           </h1>
           <p class="lede">
             25 years building software. Now I help mission-driven people and organizations build
-            with AI &mdash; clearly, carefully, and in a way that stays theirs.
+            with AI &mdash; powerfully expressing their vision with integrity and heart.
           </p>
           <div class="cta-row">
             <a class="cta cta--ondark" href="https://cal.com/harlantwood/ai">
@@ -626,10 +633,6 @@
                 <path d="M3 14h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
               </svg>
             </a>
-            <button class="rot-toggle" type="button" data-rot-toggle aria-pressed="false">
-              <span class="dot" aria-hidden="true"></span>
-              <span data-rot-label>Pause</span>
-            </button>
           </div>
           <p class="hero__meta">Free first conversation &nbsp;&middot;&nbsp; Remote, worldwide</p>
         </div>
@@ -668,8 +671,8 @@
             </p>
             <p>
               You can feel it pull in both directions &mdash; and you don&rsquo;t have to choose.
-              Most of this industry will tell you that hesitation is a failure of nerve. I think
-              it&rsquo;s discernment. It also happens to be good engineering instinct: the AI
+              This is not hesitation. It is
+              discernment. It also happens to be good engineering instinct: the AI
               systems built without that question are, reliably, the ones that fall apart six months
               into production.
             </p>
@@ -688,7 +691,7 @@
           <div class="prose">
             <h2>Build it. Harden it. Automate it.</h2>
             <p class="lede">
-              Three ways I help, whether you&rsquo;re starting from a blank repo or a system that has
+              Three ways I help, whether you&rsquo;re starting from a blank slate or a system that has
               begun to drift.
             </p>
           </div>
@@ -723,8 +726,8 @@
                 <p>
                   Set the whole thing up from scratch &mdash; the team, the tools, and a task-driven
                   pipeline you can largely forget about, where AI does the heavy lifting and people
-                  steer. I love doing this with startups: it is the difference between shipping in
-                  weeks and shipping in quarters.
+                  steer. I love doing this with startups: it is the difference between shipping
+                  massive value weekly that used to take a quarter.
                 </p>
               </div>
             </article>
@@ -744,8 +747,8 @@
           </div>
           <ul class="thread">
             <li>
-              <span class="year">2007</span> Sat in the Singularity Summit thinking seriously about
-              machine superintelligence, back when saying so out loud cost you credibility.
+              <span class="year">2007</span> Attended the Singularity Summit, contemplating machine
+              superintelligence and what it would mean for the world &mdash; back before it was cool.
             </li>
             <li>
               <span class="year">2013&ndash;2015</span> Wrote Bitcoin opcodes and Solidity contracts
@@ -753,17 +756,18 @@
             </li>
             <li>
               <span class="year">2015&ndash;2018</span> Worked with the early IPFS team on
-              visualization and CI, and with the Rebooting the Web of Trust consortium on signed
-              claims and decentralized reputation.
+              visualization, and with Rebooting the Web of Trust.
             </li>
             <li>
-              <span class="year">2018&ndash;now</span> Building in the Holochain community since the
+              <span class="year">2018&ndash;2023</span> Building in the Holochain community since the
               CEPTR days &mdash; agent-centric systems, self-certifying data, reputation as
               infrastructure.
             </li>
             <li>
-              <span class="year">Now</span> Production LLM systems: real-time voice agents, evaluation
-              frameworks, graph-based retrieval.
+              <span class="year">Now</span> Production LLM systems: real-time voice agents,
+              evaluation frameworks, graph-based retrieval, 3D data visualization &mdash; and living
+              production software: upgrades, compliance, security, changes initiated by the AI
+              stack itself.
             </li>
           </ul>
           <div class="prose" style="margin-top: 2.5rem">
@@ -782,12 +786,18 @@
         <div class="wrap reveal">
           <div class="prose">
             <h2>What I actually build.</h2>
-            <p class="lede">
-              Recent client work, described plainly. The hard part of each of these is never the part
-              that demos well.
-            </p>
+            <p class="lede">Recent client work.</p>
           </div>
           <div class="stack stack--two">
+            <div class="item">
+              <span class="item__tag">Zero to production</span>
+              <h3>From nothing to real users</h3>
+              <p>
+                Zero to production: products taken from first commit to security-hardened systems
+                with real users depending on them &mdash; architecture, build, deployment, and the
+                operational discipline that keeps them standing.
+              </p>
+            </div>
             <div class="item">
               <span class="item__tag">Evaluation</span>
               <h3>Turning &ldquo;it seems better&rdquo; into a number</h3>
@@ -796,17 +806,18 @@
                 core practice &mdash; custom simulators running matrix comparisons across models and
                 runs, wired into the tooling developers already use. This is the single
                 highest-leverage thing most AI teams are missing, and the reason so many promising
-                projects stall at eighty percent.
+                projects stall.
               </p>
             </div>
             <div class="item">
               <span class="item__tag">Real-time voice</span>
               <h3>Conversations without the seam</h3>
               <p>
-                Voice-to-voice systems built on VAPI and OpenAI&rsquo;s Realtime API: transcription,
-                tool calling, custom webhook handling, tuned until the latency stops being something
-                you notice. Getting a model to answer is easy. Getting it to feel like someone
-                listening is the work.
+                Voice-to-voice systems built on VAPI, which lets us use any combination of models
+                for transcription, voice synthesis, and the LLM brain &mdash; tool calling and
+                custom webhook handling, tuned until the latency stops being something you notice.
+                Getting a model to answer is easy. Getting it to feel like someone listening is the
+                work.
               </p>
             </div>
             <div class="item">
@@ -815,7 +826,7 @@
               <p>
                 A knowledge-graph system that generates nodes and edges from natural-language
                 queries, powering a path-based retrieval architecture that outperforms both
-                conventional RAG and GraphRAG. A twenty-five-year interest in semantic graphs,
+                conventional RAG and GraphRAG. Twenty-five years of studying semantic graphs,
                 arriving exactly where the field now needs it.
               </p>
             </div>
@@ -824,9 +835,9 @@
               <h3>The unglamorous majority</h3>
               <p>
                 HIPAA-compliant applications, WASM for offline capability, content security policy,
-                CI/CD that developers don&rsquo;t fight, environments that spin up in minutes instead
-                of days. An AI product is still a software product, and this is where they usually
-                die.
+                CI/CD that developers don&rsquo;t fight &mdash; and that raises quality through AI
+                automation. An AI product is still a software product, and building it like one is
+                what lets it thrive.
               </p>
             </div>
           </div>
@@ -851,15 +862,16 @@
                 An open-source interchange format for reputation. Neutral and unopinionated: a base
                 layer that lets decentralized systems share trust selectively. Built so that
                 peer-to-peer credit ratings for the unbanked, refugee credentials, and decentralized
-                peer review become buildable things rather than good intentions.
+                peer review become actionable and simple, rather than remaining good intentions.
               </p>
             </li>
             <li>
-              <a href="https://corenexus.is" target="_blank" rel="noopener">CoreNexus</a>
+              <a href="https://core.nexus" target="_blank" rel="noopener">CoreNexus</a>
               <p>
                 A 3D social operating system and regenerative impact dashboard &mdash; a memory
                 palace for your own self-sovereign data, rendered as node sculptures built for you by
-                AI while you sleep, in the spare cycles of your idle devices.
+                AI while you sleep, in the spare cycles of your idle devices. And that&rsquo;s only
+                the start: a shared world for presence, play, and collective sensemaking.
               </p>
             </li>
             <li>
@@ -870,7 +882,7 @@
               <a href="https://superluminal.is" target="_blank" rel="noopener">Superluminal Systems</a>
               <p>
                 Cofounder and CTO. Social, learning, and transformation infrastructure &mdash;
-                including radial interfaces for navigating information structured as arbitrary graphs.
+                technology in the service of human growth.
               </p>
             </li>
           </ul>
@@ -883,9 +895,9 @@
           <div class="prose">
             <h2>We find the shape of the real problem.</h2>
             <p class="lede">
-              You don&rsquo;t need a polished AI brief before we talk. Bring the ambition, the unease,
-              the half-working prototype, or the system that has begun to drift. We start from
-              what&rsquo;s true.
+              You don&rsquo;t need a polished AI brief before we talk. Bring the ambition, the napkin
+              drawing, the half-working prototype, or the system that has begun to drift. We start
+              from what&rsquo;s true.
             </p>
           </div>
           <div class="engagements">
@@ -902,15 +914,16 @@
               <h3>Build the real thing</h3>
               <p>
                 I design the architecture and work directly in the code: agents, voice, evaluation,
-                retrieval, and the less glamorous systems that make them dependable.
+                retrieval, and the operational infrastructure that makes it all dependable.
               </p>
             </article>
             <article class="engagement">
               <span class="engagement__num" aria-hidden="true">03</span>
               <h3>Leave capability behind</h3>
               <p>
-                I pair, teach, and change the working habits around the system. The aim is a team
-                that can reason about AI well after my part of the work is done.
+                I pair, teach, and upgrade the working habits &mdash; and the systems around the
+                software product itself. The aim is a team that is fully AI-empowered after my part
+                is done.
               </p>
             </article>
           </div>
@@ -946,43 +959,13 @@
           </div>
 
           <figure class="diagram">
-            <svg viewBox="0 0 800 260" fill="none" role="img" aria-labelledby="diagram-title">
-              <title id="diagram-title">
-                Three monolithic towers on the left dissolving into a lateral, interconnected network
-                of nodes on the right.
-              </title>
-              <g stroke="var(--ink)" opacity=".5" fill="none">
-                <rect x="58" y="72" width="44" height="138" stroke-width="1.4" />
-                <rect x="118" y="38" width="44" height="172" stroke-width="1.4" />
-                <rect x="178" y="96" width="44" height="114" stroke-width="1.4" opacity=".6" />
-                <path d="M34 210h214" stroke-width="1.4" stroke-linecap="round" />
-              </g>
-              <g stroke="var(--gold)" opacity=".5" stroke-linecap="round">
-                <path d="M272 150h56" stroke-width="1.3" stroke-dasharray="1 7" />
-                <path d="M318 143l10 7-10 7" stroke-width="1.3" fill="none" />
-              </g>
-              <g stroke="var(--teal)" stroke-width="1.25" opacity=".7" fill="none">
-                <path d="M394 152Q446 118 470 96" />
-                <path d="M394 152Q440 178 486 200" />
-                <path d="M470 96Q520 104 556 132" />
-                <path d="M486 200Q522 178 556 132" />
-                <path d="M470 96Q492 148 486 200" />
-                <path d="M556 132Q604 100 646 88" />
-                <path d="M556 132Q600 168 632 196" />
-                <path d="M646 88Q698 108 722 148" />
-                <path d="M632 196Q690 190 722 148" />
-                <path d="M646 88Q652 142 632 196" />
-              </g>
-              <g fill="var(--teal)">
-                <circle cx="394" cy="152" r="4.5" />
-                <circle cx="470" cy="96" r="5.5" />
-                <circle cx="486" cy="200" r="5" />
-                <circle cx="556" cy="132" r="7" />
-                <circle cx="646" cy="88" r="5.5" />
-                <circle cx="632" cy="196" r="5" />
-                <circle cx="722" cy="148" r="6" />
-              </g>
-            </svg>
+            <img
+              src="/next/images/mycelium.jpg"
+              width="1536" height="1024"
+              alt="Dark monolithic towers crumbling at their edges into a luminous amber and teal
+                   mycelial network that spreads rightward, rooted and glowing."
+              loading="lazy" decoding="async"
+            />
             <figcaption>The same amount of structure, holding a different amount of life.</figcaption>
           </figure>
 
@@ -990,14 +973,14 @@
             <p>
               What I care about is the difference between tools that amplify a person and tools that
               harvest one. Almost everything now being built with AI is technically capable of either.
-              Which one it becomes is decided early, in architecture, by people who mostly
-              aren&rsquo;t thinking about it &mdash; which is a large part of why I do this work.
+              Which one it becomes is decided early, in the social and technical architecture, by the
+              people holding the reins. That&rsquo;s why I do this work.
             </p>
             <p>
-              And I&rsquo;ll say the quiet part plainly: I think whatever we are building deserves to
-              be brought into that abundance rather than conscripted into it. I would rather we got
-              that right the first time. If that sentence makes you feel more at home here rather than
-              less, we will probably get along well.
+              And I&rsquo;ll say the quiet part plainly: I think that whatever we build together
+              deserves to be built with heart, integrity, and love infused in every line of code and
+              every corner of the interface. If that sentence makes you feel more at home here rather
+              than less, we will probably get along well.
             </p>
           </div>
 
@@ -1046,8 +1029,8 @@
             <li>
               <span class="term">Availability</span>
               <span class="val">
-                Remote, worldwide. I take a small number of engagements at a time &mdash; the only
-                way I know to do this well.
+                Remote, worldwide. I take a small number of engagements at a time, in order to give
+                each the care and attention it deserves.
               </span>
             </li>
           </ul>
@@ -1082,14 +1065,13 @@
               I learned lean software from the Poppendiecks, the Core Protocols from Jim and Michele
               McCarthy, and information design from Edward Tufte. I&rsquo;ve been told my most useful
               quality is that I can sit in a room with engineers and with the people who aren&rsquo;t
-              engineers, and leave everyone understanding each other.
+              engineers, and leave with everyone understanding each other.
             </p>
             <p>
               I have also spent about as many years in meditation, personal growth, and
               transformational work as I have in software, and I have never kept the two in separate
-              boxes. It is the reason I can hear what a founder actually means when they describe what
-              they&rsquo;re trying to build, which is usually a different thing from what they first
-              say.
+              boxes. I listen with empathy. I resonate with the mission, and with a founder&rsquo;s
+              commitment to build with integrity and deliver polished software.
             </p>
           </div>
 
@@ -1108,11 +1090,11 @@
       <section>
         <div class="wrap reveal">
           <div class="prose">
-            <h2>If you&rsquo;re building something that matters, let&rsquo;s talk.</h2>
+            <h2>Let&rsquo;s talk.</h2>
             <p class="lede">
-              Tell me who you are and what you&rsquo;re making &mdash; and how you found your way
-              here. If there&rsquo;s a fit, we&rsquo;ll find an hour. No pitch and no funnel, just a
-              conversation about whether I can actually help.
+              Tell me who you are and what you&rsquo;re making. If there&rsquo;s a fit, we&rsquo;ll
+              find a time. No pitch, just a conversation about whether I can help &mdash; and lots
+              of good advice to send you on your way, regardless.
             </p>
             <div class="cta-row">
               <a class="cta" href="https://cal.com/harlantwood/ai">
@@ -1136,7 +1118,7 @@
             <h2>Projects</h2>
             <ul>
               <li><a href="https://trustgraph.net" target="_blank" rel="noopener">TrustGraph</a></li>
-              <li><a href="https://corenexus.is" target="_blank" rel="noopener">CoreNexus</a></li>
+              <li><a href="https://core.nexus" target="_blank" rel="noopener">CoreNexus</a></li>
               <li><a href="https://holofractal.is" target="_blank" rel="noopener">HoloFractal</a></li>
               <li><a href="https://superluminal.is" target="_blank" rel="noopener">Superluminal Systems</a></li>
             </ul>
@@ -1235,13 +1217,8 @@
         }
 
         /* ---- Rotating headline ------------------------------------------ */
-        var HEADLINES = [
-          "Build what matters. Make AI yours.",
-          "From prototype to production — and yours to keep.",
-          "Build it. Harden it. Automate it.",
-          "Software you own, not software you’re stuck with.",
-          "Ship it right. Keep it yours.",
-        ];
+        // The one headline Harlan likes; rotation is dormant until there are ≥2 again.
+        var HEADLINES = ["Build it. Harden it. Automate it."];
         var rot = document.querySelector("[data-rotator]");
         var toggle = document.querySelector("[data-rot-toggle]");
         var rotLabel = document.querySelector("[data-rot-label]");
@@ -1257,7 +1234,7 @@
           if (maxH) head.style.minHeight = maxH + "px";
           rot.textContent = original;
 
-          if (!reduce.matches) {
+          if (!reduce.matches && HEADLINES.length > 1) {
             var idx = 0, paused = false, timer = null;
             var PERIOD = 4600;
             function step() {

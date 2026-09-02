@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gallery — three · 01 · pastel billboards</title>
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#100d0b" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg stroke='%23c9902f' stroke-width='1.3' opacity='.7'%3E%3Cpath d='M16 15 8 9M16 15 25 11M16 15 21 24'/%3E%3C/g%3E%3Ccircle cx='16' cy='15' r='3.1' fill='%23c9902f'/%3E%3Ccircle cx='8' cy='9' r='2' fill='%231f6b68'/%3E%3Ccircle cx='25' cy='11' r='2' fill='%23b85c5c'/%3E%3Ccircle cx='21' cy='24' r='1.8' fill='%231f6b68'/%3E%3C/svg%3E"
+    />
+    <style>
+      * { box-sizing: border-box; }
+      html { background: #100d0b; }
+      body {
+        margin: 0;
+        /* The scene is fixed; the body's only job is to give us scroll room.
+           Rotation is driven entirely by scroll position. */
+        height: 600vh;
+        background:
+          radial-gradient(120% 90% at 75% 20%, rgba(233, 177, 78, 0.07) 0, transparent 55%),
+          radial-gradient(110% 90% at 20% 85%, rgba(184, 130, 170, 0.06) 0, transparent 55%),
+          #100d0b;
+        color: #c9bca0;
+        font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+      }
+      canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+      .tag {
+        position: fixed; left: 1.25rem; top: 1.1rem; z-index: 2;
+        font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+        opacity: 0.7;
+      }
+      .hint {
+        position: fixed; left: 50%; bottom: 1.4rem; transform: translateX(-50%); z-index: 2;
+        font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+        opacity: 0.55; transition: opacity 1s ease;
+      }
+      .hint.is-hidden { opacity: 0; }
+      a { color: inherit; }
+    </style>
+  </head>
+  <body>
+    <p class="tag">three &middot; 01 &middot; pastel billboards</p>
+    <p class="hint" data-hint>Scroll</p>
+    <canvas data-canvas></canvas>
+
+    <script src="/vendor/three.min.js"></script>
+    <script>
+      (function () {
+        var canvas = document.querySelector("[data-canvas]");
+        if (!window.THREE) return;
+
+        var renderer;
+        try {
+          renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+        } catch (e) {
+          return; // No WebGL: the gradient background stands alone.
+        }
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000000, 0);
+
+        var camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 5000);
+        camera.position.z = 1750;
+        var scene = new THREE.Scene();
+
+        /* Soft round sprite, generated so the page makes zero external requests. */
+        function makeSprite() {
+          var c = document.createElement("canvas");
+          c.width = c.height = 128;
+          var g = c.getContext("2d");
+          var grad = g.createRadialGradient(64, 64, 0, 64, 64, 62);
+          grad.addColorStop(0, "rgba(255,255,255,1)");
+          grad.addColorStop(0.55, "rgba(255,255,255,0.95)");
+          grad.addColorStop(1, "rgba(255,255,255,0)");
+          g.fillStyle = grad;
+          g.beginPath();
+          g.arc(64, 64, 62, 0, Math.PI * 2);
+          g.fill();
+          var tex = new THREE.CanvasTexture(c);
+          return tex;
+        }
+
+        /* Instanced billboard quads, after the classic three.js example —
+           webgl_buffergeometry_instancing_billboards — reworked for slow,
+           luminous pastel drift. */
+        var COUNT = 32000;
+        var geometry = new THREE.InstancedBufferGeometry();
+        geometry.setIndex(new THREE.BufferAttribute(new Uint16Array([0, 2, 1, 2, 3, 1]), 1));
+        geometry.setAttribute(
+          "position",
+          new THREE.BufferAttribute(
+            new Float32Array([-0.5, 0.5, 0, 0.5, 0.5, 0, -0.5, -0.5, 0, 0.5, -0.5, 0]),
+            3
+          )
+        );
+        geometry.setAttribute(
+          "uv",
+          new THREE.BufferAttribute(new Float32Array([0, 1, 1, 1, 0, 0, 1, 0]), 2)
+        );
+        var translate = new Float32Array(COUNT * 3);
+        for (var i = 0; i < COUNT * 3; i++) translate[i] = Math.random() * 2 - 1;
+        geometry.setAttribute("translate", new THREE.InstancedBufferAttribute(translate, 3));
+
+        var material = new THREE.RawShaderMaterial({
+          uniforms: {
+            map: { value: makeSprite() },
+            time: { value: 0 },
+          },
+          vertexShader: [
+            "precision highp float;",
+            "uniform mat4 modelViewMatrix;",
+            "uniform mat4 projectionMatrix;",
+            "uniform float time;",
+            "attribute vec3 position;",
+            "attribute vec2 uv;",
+            "attribute vec3 translate;",
+            "varying vec2 vUv;",
+            "varying float vScale;",
+            "void main() {",
+            "  vec4 mvPosition = modelViewMatrix * vec4( translate, 1.0 );",
+            "  vec3 trTime = vec3( translate.x + time, translate.y + time, translate.z + time );",
+            "  float scale = sin( trTime.x * 2.1 ) + sin( trTime.y * 3.2 ) + sin( trTime.z * 4.3 );",
+            "  vScale = scale;",
+            "  scale = scale * 7.0 + 7.0;",
+            "  mvPosition.xyz += position * scale;",
+            "  vUv = uv;",
+            "  gl_Position = projectionMatrix * mvPosition;",
+            "}",
+          ].join("\n"),
+          fragmentShader: [
+            "precision highp float;",
+            "uniform sampler2D map;",
+            "varying vec2 vUv;",
+            "varying float vScale;",
+            "// Sunset hues, kept saturated at the source: additive overlap is what",
+            "// lifts them into pastel — near-white inputs would just sum to grey.",
+            "vec3 palette( float t ) {",
+            "  vec3 gold     = vec3( 0.914, 0.694, 0.306 );",
+            "  vec3 peach    = vec3( 0.880, 0.475, 0.416 );",
+            "  vec3 rose     = vec3( 0.851, 0.541, 0.620 );",
+            "  vec3 lavender = vec3( 0.612, 0.498, 0.761 );",
+            "  vec3 dusk     = vec3( 0.373, 0.576, 0.659 );",
+            "  vec3 c = mix( gold, peach, smoothstep( 0.00, 0.35, t ) );",
+            "  c = mix( c, rose,     smoothstep( 0.35, 0.58, t ) );",
+            "  c = mix( c, lavender, smoothstep( 0.58, 0.80, t ) );",
+            "  c = mix( c, dusk,     smoothstep( 0.80, 1.00, t ) );",
+            "  return c;",
+            "}",
+            "void main() {",
+            "  vec4 diffuseColor = texture2D( map, vUv );",
+            "  if ( diffuseColor.w < 0.03 ) discard;",
+            "  float t = clamp( vScale / 6.0 + 0.5, 0.0, 1.0 );",
+            "  // Additive glow: each sprite is faint; light accumulates where they overlap.",
+            "  gl_FragColor = vec4( palette( t ) * 0.13 * diffuseColor.w, 1.0 );",
+            "}",
+          ].join("\n"),
+          depthTest: true,
+          depthWrite: false,
+          transparent: true,
+          blending: THREE.AdditiveBlending,
+        });
+
+        var mesh = new THREE.Mesh(geometry, material);
+        mesh.scale.set(500, 500, 500);
+        scene.add(mesh);
+
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+        var hint = document.querySelector("[data-hint]");
+
+        /* Rotation is locked to scroll: a full gentle turn and a slight tilt
+           across the whole page. Eased toward the target so it stays calm. */
+        var rotY = 0, rotX = 0;
+        function scrollProgress() {
+          var max = document.documentElement.scrollHeight - window.innerHeight;
+          return max > 0 ? window.scrollY / max : 0;
+        }
+        window.addEventListener("scroll", function () {
+          if (hint) hint.classList.add("is-hidden");
+        }, { passive: true });
+
+        window.addEventListener("resize", function () {
+          camera.aspect = window.innerWidth / window.innerHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        /* Morphing runs ~10x slower than the original example (0.0005 -> 0.00005). */
+        var MORPH_SPEED = 0.00005;
+        function animate() {
+          requestAnimationFrame(animate);
+          if (!reduce.matches) material.uniforms.time.value = performance.now() * MORPH_SPEED;
+
+          var p = scrollProgress();
+          var targetY = p * Math.PI * 2;
+          var targetX = Math.sin(p * Math.PI) * 0.22;
+          var ease = reduce.matches ? 1 : 0.06;
+          rotY += (targetY - rotY) * ease;
+          rotX += (targetX - rotX) * ease;
+          mesh.rotation.y = rotY;
+          mesh.rotation.x = rotX;
+
+          renderer.render(scene, camera);
+        }
+        animate();
+      })();
+    </script>
+  </body>
+</html>

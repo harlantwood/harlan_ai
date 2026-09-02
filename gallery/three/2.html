@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gallery — three · 02 · slow ocean sunrise</title>
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#1a1216" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg stroke='%23c9902f' stroke-width='1.3' opacity='.7'%3E%3Cpath d='M16 15 8 9M16 15 25 11M16 15 21 24'/%3E%3C/g%3E%3Ccircle cx='16' cy='15' r='3.1' fill='%23c9902f'/%3E%3Ccircle cx='8' cy='9' r='2' fill='%231f6b68'/%3E%3Ccircle cx='25' cy='11' r='2' fill='%23b85c5c'/%3E%3Ccircle cx='21' cy='24' r='1.8' fill='%231f6b68'/%3E%3C/svg%3E"
+    />
+    <style>
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0; overflow: hidden;
+        background: #1a1216;
+        color: #f6ecd9;
+        font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+      }
+      canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+      .tag {
+        position: fixed; left: 1.25rem; top: 1.1rem; z-index: 2;
+        font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+        opacity: 0.75; text-shadow: 0 1px 12px rgba(26, 18, 22, 0.8);
+      }
+      a { color: inherit; }
+    </style>
+  </head>
+  <body>
+    <p class="tag"><a href="./" style="text-decoration:none">three</a> &middot; 02 &middot; slow ocean sunrise</p>
+    <canvas data-canvas></canvas>
+
+    <script src="/vendor/three.min.js"></script>
+    <script>
+      (function () {
+        var canvas = document.querySelector("[data-canvas]");
+        if (!window.THREE) return;
+        var renderer;
+        try {
+          renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: false });
+        } catch (e) { return; }
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        /* One full-screen quad; the whole scene lives in the fragment shader:
+           an infinite ocean plane under a sunrise sky, in the spirit of the
+           classic three.js ocean example but warmer, brighter, and slower —
+           and with a luminous, rayed sun instead of a hidden one. */
+        var scene = new THREE.Scene();
+        var camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+        var uniforms = {
+          time: { value: 0 },
+          resolution: { value: new THREE.Vector2(1, 1) },
+        };
+        var material = new THREE.RawShaderMaterial({
+          uniforms: uniforms,
+          vertexShader: [
+            "precision highp float;",
+            "attribute vec3 position;",
+            "void main() { gl_Position = vec4( position, 1.0 ); }",
+          ].join("\n"),
+          fragmentShader: [
+            "precision highp float;",
+            "uniform float time;",
+            "uniform vec2 resolution;",
+            "",
+            "// ---- Sun, low over the horizon: sunrise. ----",
+            "const vec3 SUN_DIR = vec3( 0.0, 0.10, -0.99 );",
+            "",
+            "// Warm luminous palette.",
+            "const vec3 ZENITH    = vec3( 0.42, 0.45, 0.64 );  // soft dusk blue",
+            "const vec3 MID_SKY   = vec3( 0.89, 0.58, 0.50 );  // rose",
+            "const vec3 HORIZON   = vec3( 1.05, 0.82, 0.55 );  // luminous gold-peach",
+            "const vec3 SUN_CORE  = vec3( 1.35, 1.18, 0.95 );",
+            "const vec3 SUN_WARM  = vec3( 1.15, 0.78, 0.45 );",
+            "const vec3 WATER_DEEP = vec3( 0.16, 0.19, 0.26 ); // warm slate-teal",
+            "const vec3 WATER_WARM = vec3( 0.55, 0.42, 0.35 ); // sun-warmed water",
+            "",
+            "// ---- Small directional-wave heightfield for the water normal. ----",
+            "float wave( vec2 p, vec2 d, float freq, float speed, float t ) {",
+            "  return sin( dot( p, d ) * freq + t * speed );",
+            "}",
+            "float height( vec2 p, float t ) {",
+            "  float h = 0.0;",
+            "  h += 0.50 * wave( p, vec2( 0.00,  1.00 ), 0.16, 1.00, t );",
+            "  h += 0.28 * wave( p, vec2( 0.60,  0.80 ), 0.33, 1.30, t );",
+            "  h += 0.16 * wave( p, vec2(-0.72,  0.70 ), 0.62, 1.70, t );",
+            "  h += 0.09 * wave( p, vec2( 0.94,  0.34 ), 1.10, 2.10, t );",
+            "  h += 0.05 * wave( p, vec2(-0.30,  0.95 ), 2.30, 2.60, t );",
+            "  h += 0.015 * wave( p, vec2( 0.80, -0.60 ), 3.30, 3.10, t );",
+            "  return h;",
+            "}",
+            "vec3 waterNormal( vec2 p, float t, float dist ) {",
+            "  // Fade the detail with distance so the horizon stays calm.",
+            "  float e = 0.35;",
+            "  float atten = 1.0 / ( 1.0 + dist * 0.02 );",
+            "  float hC = height( p, t );",
+            "  float hX = height( p + vec2( e, 0.0 ), t );",
+            "  float hZ = height( p + vec2( 0.0, e ), t );",
+            "  vec3 n = vec3( ( hC - hX ) * atten, e * 1.6, ( hC - hZ ) * atten );",
+            "  return normalize( n );",
+            "}",
+            "",
+            "// Sky without the starburst — for haze and reflections, where the",
+            "// needle rays would alias into bands.",
+            "vec3 skyBase( vec3 dir ) {",
+            "  float y = clamp( dir.y, 0.0, 1.0 );",
+            "  vec3 c = mix( HORIZON, MID_SKY, smoothstep( 0.0, 0.22, y ) );",
+            "  c = mix( c, ZENITH, smoothstep( 0.22, 0.75, y ) );",
+            "  float s = clamp( dot( dir, normalize( SUN_DIR ) ), 0.0, 1.0 );",
+            "  // Broad warm glow, tighter halo, luminous core.",
+            "  c += SUN_WARM * 0.55 * pow( s, 6.0 );",
+            "  c += SUN_WARM * 0.85 * pow( s, 32.0 );",
+            "  c += SUN_CORE * smoothstep( 0.9993, 0.99985, s );",
+            "  return c;",
+            "}",
+            "vec3 sky( vec3 dir ) {",
+            "  vec3 c = skyBase( dir );",
+            "  float s = clamp( dot( dir, normalize( SUN_DIR ) ), 0.0, 1.0 );",
+            "  // Starburst rays, after the hero sunrise photo: many needle-thin",
+            "  // spokes of varying length around a white core.",
+            "  vec3 sunN = normalize( SUN_DIR );",
+            "  vec3 ortho1 = normalize( cross( sunN, vec3( 0.0, 1.0, 0.0 ) ) );",
+            "  vec3 ortho2 = cross( sunN, ortho1 );",
+            "  float ang = atan( dot( dir, ortho2 ), dot( dir, ortho1 ) );",
+            "  float spikes = pow( 0.5 + 0.5 * sin( ang * 36.0 ), 14.0 )",
+            "               + pow( 0.5 + 0.5 * sin( ang * 22.0 + 0.9 ), 10.0 ) * 0.7",
+            "               + pow( 0.5 + 0.5 * sin( ang * 58.0 + 2.1 ), 22.0 ) * 0.5;",
+            "  // Fade the needles as they approach the waterline so they melt",
+            "  // into the glare band instead of clipping against it.",
+            "  float horizonFade = smoothstep( 0.0, 0.05, dir.y );",
+            "  c += SUN_CORE * spikes * pow( s, 90.0 ) * 0.85 * horizonFade;",
+            "  c += SUN_WARM * spikes * pow( s, 24.0 ) * 0.22 * horizonFade;",
+            "  return c;",
+            "}",
+            "",
+            "void main() {",
+            "  vec2 uv = ( gl_FragCoord.xy * 2.0 - resolution ) / resolution.y;",
+            "  // Camera a little above the water, looking at the horizon.",
+            "  vec3 org = vec3( 0.0, 4.2, 0.0 );",
+            "  vec3 dir = normalize( vec3( uv.x, uv.y * 0.85 - 0.06, -1.35 ) );",
+            "",
+            "  vec3 color;",
+            "  if ( dir.y >= -0.001 ) {",
+            "    color = sky( dir );",
+            "  } else {",
+            "    float dist = -org.y / dir.y;",
+            "    vec2 p = org.xz + dir.xz * dist;",
+            "    vec3 n = waterNormal( p, time, dist );",
+            "    vec3 refl = reflect( dir, n );",
+            "    refl.y = abs( refl.y );",
+            "    float fresnel = 0.35 + 0.65 * pow( 1.0 - max( dot( -dir, n ), 0.0 ), 3.0 );",
+            "    vec3 base = mix( WATER_DEEP, WATER_WARM, pow( clamp( dot( normalize( SUN_DIR ), -dir ), 0.0, 1.0 ), 3.0 ) * 0.8 );",
+            "    color = mix( base, skyBase( refl ) * 0.92, fresnel );",
+            "    // Sun glitter down the light path.",
+            "    float spec = pow( max( dot( refl, normalize( SUN_DIR ) ), 0.0 ), 260.0 );",
+            "    color += SUN_CORE * spec * 1.6;",
+            "    // Soften into the horizon line.",
+            "    float haze = smoothstep( 60.0, 320.0, dist );",
+            "    color = mix( color, skyBase( vec3( dir.x, 0.001, dir.z ) ), haze * 0.85 );",
+            "  }",
+            "",
+            "  // Warm, gentle tone curve — bright without burning.",
+            "  color = color / ( 1.0 + color * 0.45 );",
+            "  color = pow( color, vec3( 0.92 ) );",
+            "  gl_FragColor = vec4( color, 1.0 );",
+            "}",
+          ].join("\n"),
+          depthTest: false,
+          depthWrite: false,
+        });
+        var quad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
+        scene.add(quad);
+
+        function resize() {
+          renderer.setSize(window.innerWidth, window.innerHeight);
+          uniforms.resolution.value.set(
+            window.innerWidth * renderer.getPixelRatio(),
+            window.innerHeight * renderer.getPixelRatio()
+          );
+        }
+        window.addEventListener("resize", resize);
+        resize();
+
+        /* ~5x slower than the usual example pace: illumination, not spectacle. */
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+        var SPEED = 0.0002;
+        function animate() {
+          requestAnimationFrame(animate);
+          if (!reduce.matches) uniforms.time.value = performance.now() * SPEED;
+          renderer.render(scene, camera);
+        }
+        animate();
+      })();
+    </script>
+  </body>
+</html>
