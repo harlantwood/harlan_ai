@@ -10,17 +10,20 @@ Site: https://ha.rlan.ai
 
 ## Main thread version
 
-Hi beautiful people 🌅
+Hi Tribe <3
 
-An offer from my heart to this tribe. I've been building software for 25 years, and these days I help mission-driven founders build with AI — powerfully, and with integrity and heart.
+In addition to Alchemy Astrology... I've been building software for 25 years, and I love helping mission-driven founders build apps and complex sites — fully AI integrated, with integrity and heart.
 
-Zero-to-production builds, hardening what you've already got, real-time voice agents, evaluation, the whole "make AI actually *yours*" thing. If you've got an idea, a half-working prototype, or a system that's started to drift, I'd love to help.
+- Zero-to-production with real users, real data, scalable, maintainable, secure, and beautiful.
+- Existing apps: security hardening, add real-time voice agents, 3D graphics, etc.
 
-I'm opening up a little availability. The first conversation is free and genuinely useful — bring your real problem and you'll leave with real advice, whether or not we end up working together. No pressure, just a good conversation.
+If you've got an idea, a half-working prototype, or a system that's started to drift, I'd love to help.
 
-Everything's here: **https://ha.rlan.ai**
+I'm opening up a little availability. The first conversation is free and genuinely useful — you'll leave with great advice, whether or not we end up working together..
 
-DM me anytime 🙏
+Everything's here: https://ha.rlan.ai
+
+Special discount for Tribe members, and a joy to help someone here 🙏
 
 ---
 
