@@ -50,20 +50,23 @@
          LUMINOUS — combined build. Design system in _ai/next/DESIGN.md
          ============================================================ */
       :root {
-        --ground: #fdfbf6;
-        --ground-2: #f6f0e4;
-        --ink: #16202b;
-        --ink-soft: #4a5866;
-        --ink-faint: #5e6b76;
-        --gold: #c9902f;
-        --gold-deep: #8a5a12;
-        --teal: #1f6b68;
-        --rose: #b85c5c;
+        /* Light mode is the Alchemy "parchment" palette: an aged-paper ground,
+           warm brown-grey inks, and antique gold doing the ruling and lettering.
+           (Modeled on aistrology/saturn — app/assets/stylesheets/alchemy/tokens.css.) */
+        --ground: #f9efdd;      /* parchment-light */
+        --ground-2: #f3e7d2;    /* parchment */
+        --ink: #171a24;
+        --ink-soft: #55504a;
+        --ink-faint: #7c7469;
+        --gold: #c89c3d;
+        --gold-deep: #755018;
+        --teal: #2d9298;
+        --rose: #b85d65;
 
-        --glow-gold: rgba(201, 144, 47, 0.16);
-        --glow-rose: rgba(184, 92, 92, 0.1);
-        --glow-teal: rgba(31, 107, 104, 0.08);
-        --hairline: rgba(22, 32, 43, 0.12);
+        --glow-gold: rgba(200, 156, 61, 0.16);
+        --glow-rose: rgba(184, 93, 101, 0.1);
+        --glow-teal: rgba(45, 146, 152, 0.08);
+        --hairline: rgba(141, 111, 45, 0.28);   /* alc-rule: a warm gold hairline */
 
         /* The hero is always the sunrise band, in either theme — the warm,
            bright sky the ocean scene paints. Ink runs dark over it. */
