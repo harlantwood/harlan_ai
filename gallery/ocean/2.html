@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ocean — 02 · soft dawn</title>
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#b3939c" />
+    <style>
+      * { margin: 0; box-sizing: border-box; }
+      html, body { height: 100%; overflow: hidden; background: #1a1216; }
+      canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+      .tag {
+        position: fixed; left: 1.25rem; top: 1.1rem; z-index: 2;
+        font-family: ui-sans-serif, -apple-system, sans-serif; font-size: 0.78rem;
+        letter-spacing: 0.14em; text-transform: uppercase; color: #33241a;
+        text-shadow: 0 1px 10px rgba(246,223,194,0.6);
+      }
+      .tag a { color: inherit; text-decoration: none; }
+    </style>
+  </head>
+  <body>
+    <p class="tag"><a href="./">ocean</a> &middot; 02 &middot; soft dawn</p>
+    <canvas data-canvas></canvas>
+    <script src="/vendor/three.min.js"></script>
+    <script src="./ocean.js"></script>
+    <script>
+      // Softer, fewer rays; calmer water; a warmer coral-peach dawn.
+      Ocean.init(document.querySelector("[data-canvas]"), {
+        zenith: [0.44, 0.44, 0.66],
+        midSky: [0.93, 0.60, 0.53],
+        horizon: [1.05, 0.85, 0.60],
+        sunWarm: [1.12, 0.80, 0.50],
+        waterDeep: [0.17, 0.20, 0.27],
+        waterWarm: [0.58, 0.44, 0.37],
+        rayCount: 18,
+        raySharp: 8,
+        rayIntensity: 0.42,
+        waveDetail: 0.45,
+        waveHeight: 0.9,
+      });
+    </script>
+  </body>
+</html>

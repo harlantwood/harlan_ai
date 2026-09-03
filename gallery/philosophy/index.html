@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gallery — philosophy image options</title>
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#100d0b" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg stroke='%23c9902f' stroke-width='1.3' opacity='.7'%3E%3Cpath d='M16 15 8 9M16 15 25 11M16 15 21 24'/%3E%3C/g%3E%3Ccircle cx='16' cy='15' r='3.1' fill='%23c9902f'/%3E%3Ccircle cx='8' cy='9' r='2' fill='%231f6b68'/%3E%3Ccircle cx='25' cy='11' r='2' fill='%23b85c5c'/%3E%3Ccircle cx='21' cy='24' r='1.8' fill='%231f6b68'/%3E%3C/svg%3E"
+    />
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0; padding: clamp(1.5rem, 5vw, 4rem);
+        background:
+          radial-gradient(120% 90% at 78% 8%, rgba(233, 177, 78, 0.08) 0, transparent 55%),
+          #100d0b;
+        color: #f6ecd9;
+        font-family: "Iowan Old Style", Palatino, Georgia, ui-serif, serif;
+      }
+      header { max-width: 60rem; margin: 0 auto 2.5rem; }
+      h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 600; letter-spacing: -0.02em; margin: 0 0 0.5rem; }
+      .sub {
+        font-family: ui-sans-serif, -apple-system, sans-serif; font-size: 0.95rem;
+        color: #c9bca0; max-width: 42rem; line-height: 1.5;
+      }
+      .current {
+        font-family: ui-sans-serif, -apple-system, sans-serif; font-size: 0.85rem;
+        color: #8a7f6a; margin-top: 0.75rem;
+      }
+      .grid {
+        max-width: 78rem; margin: 0 auto;
+        display: grid; gap: clamp(1.5rem, 3vw, 2.5rem);
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 30rem), 1fr));
+      }
+      figure { margin: 0; }
+      a.shot { display: block; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px -18px rgba(233,177,78,0.25), 0 1px 2px rgba(0,0,0,0.4); }
+      img { width: 100%; display: block; aspect-ratio: 3/2; object-fit: cover; }
+      figcaption { margin-top: 0.9rem; }
+      .name {
+        font-family: ui-sans-serif, -apple-system, sans-serif; font-size: 0.72rem; font-weight: 600;
+        letter-spacing: 0.12em; text-transform: uppercase; color: #e4b05c;
+      }
+      .desc { color: #c9bca0; font-size: 1rem; line-height: 1.5; margin-top: 0.25rem; }
+      .tag { font-family: ui-sans-serif, sans-serif; font-size: 0.78rem; color: #8a7f6a; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Philosophy section &mdash; image options</h1>
+      <p class="sub">
+        Replacements for the &ldquo;monolithic towers &rarr; mycelium&rdquo; diagram. Three
+        directions: punchier reworks of the towers metaphor, warm dawn pieces that match the new
+        hero, and abstract network options. The section can hold two or three of these, not just one.
+      </p>
+      <p class="current">Currently on the page: the earlier dark towers-to-mycelium render.</p>
+    </header>
+
+    <div class="grid">
+      <figure>
+        <a class="shot" href="01-rhizome-bloom.jpg" target="_blank" rel="noopener"><img src="01-rhizome-bloom.jpg" alt="Luminous mushrooms over a dense gold-and-teal mycelial web on black" /></a>
+        <figcaption>
+          <div class="name">01 &middot; Rhizome bloom <span class="tag">&middot; dark</span></div>
+          <div class="desc">Real luminous fruiting bodies over a dense gold/teal web. The punchiest, most detailed take on the mycelium idea.</div>
+        </figcaption>
+      </figure>
+      <figure>
+        <a class="shot" href="02-obelisk-to-roots.jpg" target="_blank" rel="noopener"><img src="02-obelisk-to-roots.jpg" alt="A cold monolith shattering into a river of glowing roots and mushrooms" /></a>
+        <figcaption>
+          <div class="name">02 &middot; Obelisk to roots <span class="tag">&middot; dark</span></div>
+          <div class="desc">The clearest story: one monolith fracturing, its base erupting into a river of living light. Keeps the towers&rarr;network metaphor, high contrast.</div>
+        </figcaption>
+      </figure>
+      <figure>
+        <a class="shot" href="03-tree-of-light.jpg" target="_blank" rel="noopener"><img src="03-tree-of-light.jpg" alt="A tree of golden light whose canopy and roots form one network at dawn" /></a>
+        <figcaption>
+          <div class="name">03 &middot; Tree of light <span class="tag">&middot; warm / dawn</span></div>
+          <div class="desc">Canopy and roots as one cooperative web, at sunrise. Reads instantly as &ldquo;rooted&rdquo; and matches the new hero palette.</div>
+        </figcaption>
+      </figure>
+      <figure>
+        <a class="shot" href="04-constellation-graph.jpg" target="_blank" rel="noopener"><img src="04-constellation-graph.jpg" alt="An abstract sculpture of glowing gold and teal nodes joined by fine filaments" /></a>
+        <figcaption>
+          <div class="name">04 &middot; Constellation graph <span class="tag">&middot; dark / abstract</span></div>
+          <div class="desc">The brand node-graph, jewel-like on black. Abstract and restrained; could also serve the retrieval section.</div>
+        </figcaption>
+      </figure>
+      <figure>
+        <a class="shot" href="05-golden-mycelium-dawn.jpg" target="_blank" rel="noopener"><img src="05-golden-mycelium-dawn.jpg" alt="A luminous mycelial network with mushrooms in a warm sunrise palette" /></a>
+        <figcaption>
+          <div class="name">05 &middot; Golden mycelium at dawn <span class="tag">&middot; warm / dawn</span></div>
+          <div class="desc">The mycelium idea in the sunrise palette &mdash; painterly, hopeful, and a natural sibling to the hero.</div>
+        </figcaption>
+      </figure>
+      <figure>
+        <a class="shot" href="06-aurora-filaments-sea.jpg" target="_blank" rel="noopener"><img src="06-aurora-filaments-sea.jpg" alt="Threads of light drifting like aurora over a calm dawn sea" /></a>
+        <figcaption>
+          <div class="name">06 &middot; Aurora filaments over sea <span class="tag">&middot; warm / dawn</span></div>
+          <div class="desc">Light-threads and nodes drifting over calm water. Bridges the hero ocean and the network motif directly.</div>
+        </figcaption>
+      </figure>
+    </div>
+  </body>
+</html>
