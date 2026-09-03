@@ -309,15 +309,16 @@
         );
       }
       /* Melt the deep hero into the page ground below. */
+      /* Blend into the color of the section directly below the hero (a band),
+         not the whiter page ground, so the image melts in without a pale step. */
       .hero-fade {
-        position: absolute; left: 0; right: 0; bottom: 0; height: 48%;
+        position: absolute; left: 0; right: 0; bottom: 0; height: 34%;
         z-index: 1; pointer-events: none;
         background: linear-gradient(
           to bottom,
           transparent 0%,
-          color-mix(in srgb, var(--ground) 30%, transparent) 45%,
-          color-mix(in srgb, var(--ground) 72%, transparent) 74%,
-          var(--ground) 100%
+          color-mix(in srgb, var(--ground-2) 55%, transparent) 62%,
+          var(--ground-2) 100%
         );
       }
       .hero-inner { position: relative; z-index: 2; }
