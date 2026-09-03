@@ -19,11 +19,11 @@ In addition to Alchemy Astrology... I've been building software for 25 years, an
 
 If you've got an idea, a half-working prototype, or a system that's started to drift, I'd love to help.
 
-I'm opening up a little availability. The first conversation is free and genuinely useful — you'll leave with great advice, whether or not we end up working together..
+I'm opening up a little availability this month. The first conversation is free — you'll leave with great advice, whether or not we end up working together.
 
-Everything's here: https://ha.rlan.ai
+Lots more info here: https://ha.rlan.ai
 
-Special discount for Tribe members, and a joy to help someone here 🙏
+Special discount for Tribe members 🙏
 
 ---
 
