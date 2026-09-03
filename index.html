@@ -50,23 +50,23 @@
          LUMINOUS — combined build. Design system in _ai/next/DESIGN.md
          ============================================================ */
       :root {
-        /* Light mode is the Alchemy "parchment" palette: an aged-paper ground,
-           warm brown-grey inks, and antique gold doing the ruling and lettering.
-           (Modeled on aistrology/saturn — app/assets/stylesheets/alchemy/tokens.css.) */
-        --ground: #f9efdd;      /* parchment-light */
-        --ground-2: #f3e7d2;    /* parchment */
-        --ink: #171a24;
-        --ink-soft: #55504a;
-        --ink-faint: #7c7469;
+        /* Light mode: Alchemy's gold/ink accents, but on a warm OFF-WHITE ground
+           rather than the tan "parchment" — the full-page parchment read too brown.
+           Kept warm so it harmonizes with the sunrise/aurora art; ink stays dark. */
+        --ground: #fdf9f2;      /* warm off-white */
+        --ground-2: #f7f1e6;    /* barely-there warm band */
+        --ink: #1a1c22;
+        --ink-soft: #4f4b45;
+        --ink-faint: #857c70;
         --gold: #c89c3d;
-        --gold-deep: #755018;
+        --gold-deep: #7a561a;
         --teal: #2d9298;
         --rose: #b85d65;
 
-        --glow-gold: rgba(200, 156, 61, 0.16);
+        --glow-gold: rgba(200, 156, 61, 0.14);
         --glow-rose: rgba(184, 93, 101, 0.1);
         --glow-teal: rgba(45, 146, 152, 0.08);
-        --hairline: rgba(141, 111, 45, 0.28);   /* alc-rule: a warm gold hairline */
+        --hairline: rgba(120, 96, 40, 0.2);   /* soft warm gold hairline */
 
         /* The hero is always the sunrise band, in either theme — the warm,
            bright sky the ocean scene paints. Ink runs dark over it. */
@@ -273,8 +273,6 @@
         color: var(--ground); transform: translateY(-2px);
         box-shadow: 0 8px 30px -6px var(--glow-gold), 0 2px 6px rgba(22, 32, 43, 0.14);
       }
-      .cta__arc { width: 1.1em; height: 1.1em; flex: none; transition: transform 0.3s var(--ease); }
-      .cta:hover .cta__arc { transform: translateX(3px); }
       .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem 2rem; margin-top: 2rem; }
       .cta-alt { font-family: var(--sans); font-size: 0.95rem; }
       /* On the dark hero the button inverts to light. */
@@ -339,9 +337,6 @@
       }
       .rot-toggle:hover { color: var(--hero-ink); border-color: var(--hero-ink-soft); }
       .rot-toggle .dot { width: 0.5em; height: 0.5em; border-radius: 999px; background: var(--gold); }
-
-      /* ============================================================ Divider motif */
-      .divider { display: block; width: 44px; margin: 0 0 2.5rem; color: var(--gold); opacity: 0.75; }
 
       /* ============================================================ Stacks / items */
       .stack { display: grid; gap: clamp(2.25rem, 5vw, 3.25rem); margin-top: 3rem; }
@@ -633,10 +628,6 @@
           <div class="cta-row">
             <a class="cta cta--ondark" href="https://cal.com/harlantwood/ai">
               Book a free consultation
-              <svg class="cta__arc" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                <path d="M3 14a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
-                <path d="M3 14h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
-              </svg>
             </a>
           </div>
           <p class="hero__meta">Free first conversation &nbsp;&middot;&nbsp; Remote, worldwide</p>
@@ -664,11 +655,6 @@
       <section>
         <div class="wrap reveal">
           <div class="prose">
-            <svg class="divider" viewBox="0 0 44 16" fill="none" aria-hidden="true">
-              <path d="M2 14h40" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
-              <path d="M8 14a14 14 0 0 1 28 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
-              <circle cx="22" cy="14" r="2" fill="currentColor" />
-            </svg>
             <h2>Your work has a reason for existing.</h2>
             <p>
               You can feel the pressure to do something with AI. You can also feel when the options
@@ -967,11 +953,6 @@
       <section id="view">
         <div class="wrap reveal">
           <div class="prose">
-            <svg class="divider" viewBox="0 0 44 16" fill="none" aria-hidden="true">
-              <path d="M2 14h40" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
-              <path d="M8 14a14 14 0 0 1 28 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
-              <circle cx="22" cy="14" r="2" fill="currentColor" />
-            </svg>
             <h2>The shape I think this is taking.</h2>
             <p>
               The monolithic towers of the tech monopolies are giving way to something more like
@@ -1022,11 +1003,6 @@
       <section class="band">
         <div class="wrap reveal">
           <div class="prose">
-            <svg class="divider" viewBox="0 0 44 16" fill="none" aria-hidden="true">
-              <path d="M2 14h40" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
-              <path d="M8 14a14 14 0 0 1 28 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
-              <circle cx="22" cy="14" r="2" fill="currentColor" />
-            </svg>
             <h2>How this works.</h2>
           </div>
           <ul class="terms">
@@ -1146,10 +1122,6 @@
             <div class="cta-row">
               <a class="cta" href="https://cal.com/harlantwood/ai">
                 Book a free consultation
-                <svg class="cta__arc" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                  <path d="M3 14a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
-                  <path d="M3 14h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
-                </svg>
               </a>
               <span class="cta-alt">or write to <a href="mailto:h@rlan.me">h@rlan.me</a></span>
             </div>
